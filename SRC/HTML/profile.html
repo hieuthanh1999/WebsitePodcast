@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+  <!-- <link rel="stylesheet" href="../CSS/style-09.css"> -->
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Questrial:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="logo__name">
+          <p>Dang Thu Huyen</p>
+        </div>
+      </div>
+      <div class="categories">
+        <div class="categories__menu">
+          <ul class="menu">
+            <li><a href="homepage.html" onclick="toggleMenu();">Trang chủ</a></li>
+            <li class="item_02">
+              <a href="./blog.html">Blog</a>
+              <span><i class="fas fa-chevron-down"></i></span>
+              <ul class="sub_menu">
+                <li><a href="blog_title.html">Kỹ năng tương lai</a></li>
+                <li><a href="blog_title.html">Phát triển bản thân</a></li>
+                <li><a href="blog_title.html">Kinh doanh và Tech</a></li>
+                <li><a href="blog_title.html">Travel</a></li>
+                <li><a href="blog_title.html">Cuộc sống hạnh phúc</a></li>
+                <li><a href="blog_title.html">Thơ & Tản văn</a></li>
+                <li><a href="blog_title.html">Phỏng vấn báo chí</a></li>
+              </ul>
+            </li>
+            <li class="item_02">
+              <a href="podcast.html" onclick="toggleMenu();">Podcast</a>
+              <span><i class="fas fa-chevron-down"></i></span>
+              <ul class="sub_menu">
+                <li><a href="">Câu chuyện kinh doanh</a></li>
+                <li><a href="">Khởi nghiệp</a></li>
+                <li><a href="">Kinh doanh và Tech</a></li>
+                <li><a href="">Travel</a></li>
+                <li><a href="">Cuộc sống hạnh phúc</a></li>
+                <li><a href="">Thơ & Tản văn</a></li>
+                <li><a href="">Phỏng vấn báo chí</a></li>
+              </ul>
+            </li>
+            <li class="item_02">
+              <a href="" onclick="toggleMenu();">Thư viện</a>
+              <span><i class="fas fa-chevron-down"></i></span>
+              <ul class="sub_menu">
+                <li><a href="">Group cộng đồng</a></li>
+                <li><a href="">Đăng ký thành viên</a></li>
+                <li><a href="">Thư viện cộng đồng</a></li>
+                <li><a href="">Liên hệ</a></li>
+              </ul>
+            </li>
+            <li><a href="homepage.html#books" onclick="toggleMenu();">Sách</a></li>
+            <li class="item_05"><a href="courses.html" onclick="toggleMenu();">Khóa học</a></li>
+          </ul>
+        </div>
+        <div class="contact__icon">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+        <div class="categories__notification">
+          <div>
+            <i class="fas fa-bell dropdown-toggle" data-toggle="notificationMenu"></i>
+            <span class="firstspan">40</span>
+          </div>
+          <ul id="notificationMenu" class="dropdown-menu notification-menu">
+            <div class="dropdown-menu-header">
+              <span>Thông báo</span>
+            </div>
+            <div class="dropdown-menu-content overlay-scrollbar">
+              <li class="dropdown-menu-item">
+                <a href="#" class="dropdown-menu-link">
+                  <div>
+                    <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                  </div>
+                  <span>
+                    Hãy cập nhật và chia sẻ những kiến thức mới cùng tôi
+                    <br>
+                    <span>
+                      2 giờ trước
+                    </span>
+                  </span>
+                </a>
+              </li>
+              <li class="dropdown-menu-item">
+                <a href="#" class="dropdown-menu-link">
+                  <div>
+                    <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                  </div>
+                  <span>
+                    Hãy cập nhật và chia sẻ những kiến thức mới cùng tôi
+                    <br>
+                    <span>
+                      4 giờ trước
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </div>
+            <div class="dropdown-menu-footer">
+              <span>Tất cả thông báo</span>
+            </div>
+          </ul>
+          <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile">
+          <div class="logout">
+            <ul>
+              <li><a href="">Profile</a></li>
+              <li><a href="">My L&D Center</a></li>
+              <li><a href="">My Account</a></li>
+              <li class="line-logout"></li>
+              <li><a href="">Đăng xuất</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="categories__login">
+          <div class="login__icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <a href="login.html">
+            <button>Login</button>
+          </a>
+        </div>
+        <div class="toggle" onclick="toggleMenu()"></div>
+      </div>
+    </header>
+
+    <!-- Share profile -->
+    <div class="share__profile">
+      <div class="profile__content">
+        <div>
+          <div class="profile__title">Chia sẻ hồ sơ của tôi trên</div>
+          <div class="profile__icon">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fas fa-link"></i>
+          </div>
+        </div>
+      </div>
+      <div class="close_profileshare">
+        <img src="../../IMG/close.png" alt="" onclick="closeShare()">
+      </div>
+    </div>
+
+    <div class="update-url">
+      <div class="update-url-content">
+        <div class="update_title">
+          <div>
+            <p>Chỉnh sửa URL cá nhân hóa của bạn</p>
+          </div>
+          <div><i class="las la-times" id="closeUpdateUrl"></i></div>
+        </div>
+        <div class="update_des">
+          <p>
+            Đây URL cá nhân hóa của bạn mà các thành viên có thể. Bạn có thể thay đổi phần URL này với tối đa 255 chữ
+            cái
+            bao gồm cả chữ cái và số. Sau khi lưu, đây sẽ là đường dẫn trực tiếp tới trang cá nhân của bạn
+          </p>
+        </div>
+        <div class="update_urlInput">
+          <label for="">Phần url của bạn</label><br>
+          <input type="text" value="https://www.nguyenphivan.com/profile/dangthuhuyen/profile">
+        </div>
+        <div class="update_btn">
+          <button id="leaveupdate">Hủy</button>
+          <button>Lưu</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="privte-confirm">
+      <div class="private_content">
+        <div class="private_btnclose">
+          <div><i class="las la-times" id="closeprivate"></i></div>
+        </div>
+        <div class="private_title">
+          <p>Đặt hồ sơ ở chế độ riêng tư</p>
+        </div>
+        <div class="private_des">
+          <p>
+            Nếu ở chế độ riêng tư, hồ sơ của bạn sẽ không hiển thị với các thành viên khác, bạn không thể bình luận hoặc
+            thích bài đăng và không thể theo dõi thành viên. Ngoài ra bạn sẽ rời khỏi nhóm đã tham gia
+          </p>
+        </div>
+        <div class="private_btn">
+          <button id="leaveprivate">Hủy</button>
+          <button>Xác nhận</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="outcourse-confirm">
+      <div class="outcourse_content">
+        <div class="outcourse_btnclose">
+          <div><i class="las la-times" id="closeoutcourse"></i></div>
+        </div>
+        <div class="outcourse_title">
+          <p>Thoát chương trình</p>
+        </div>
+        <div class="outcourse_des">
+          <p>
+            Tiến độ của bạn sẽ được lưu
+          </p>
+        </div>
+        <div class="outcourse_btn">
+          <button id="leavecourse">Hủy</button>
+          <button>Rời đi</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="deploy-confirm">
+      <div class="deploy_content">
+        <div class="deploy_btnclose">
+          <div><i class="las la-times" id="closedeploy"></i></div>
+        </div>
+        <div class="deploy_title">
+          <p>Hủy Blog Member ?</p>
+        </div>
+        <div class="deploy_des">
+          <p>
+            Nếu bạn hủy, bạn sẽ không có quyền truy cập vào gói và các quyền lợi của gói kể từ bây giờ
+          </p>
+        </div>
+        <div class="deploy_btn">
+          <button id="leavedeploy">Giữ lại</button>
+          <button>Đúng, hủy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile">
+      <div class="profile_info">
+        <div class="information">
+          <div class="info__img">
+            <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+          </div>
+          <div class="info__name">
+            <h3>DangThuHuyen</h3>
+            <div class="follow">
+              <p>0&nbsp;<span>Người theo dõi</span></p>&nbsp;&#8226;&nbsp;
+              <p>0&nbsp;<span>Đang theo dõi</span></p>
+            </div>
+            <div class="huyhieu">
+              Reader
+            </div>
+          </div>
+        </div>
+
+        <div class="viewInfo">
+          <div class="btn__info">
+            <a href="public_profile.html">
+              <button>Xem hồ sơ công khai</button>
+            </a>
+          </div>
+          <div class="icon__sharepro">
+            <i class="las la-ellipsis-v dotss"></i>
+            <span class="shareprofile">
+              <p class="sharepro">Chia sẻ hồ sơ của tôi<br /></p>
+              <p><a href="">Chỉnh sửa hồ sơ</a></p>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tablist_profile">
+        <div>
+          <!-- Tab items -->
+          <div class="tabs_profile">
+            <div class="linepro"></div>
+            <div class="tab-item-profile active">
+              Profile
+            </div>
+            <div class="tab-item-profile" id="test">
+              Files
+            </div>
+            <div class="tab-item-profile">
+              My L&D Center
+            </div>
+            <div class="tab-item-profile">
+              My Subscriptions
+            </div>
+            <div class="tab-item-profile">
+              My Account
+            </div>
+            <div class="tab-item-profile item_down">
+              Settings
+            </div>
+            <div class="tab-item-profile item_down">
+              Notifications
+            </div>
+          </div>
+        </div>
+        <!-- Tab content -->
+        <div class="tab-content-profile">
+          <div class="tab-pane-profile active">
+            <div class="profile-item">
+              <div style="padding: 30px 30px 0 30px;">
+                <div class="profile-title">
+                  <div class="name-titile">
+                    Hồ sơ
+                  </div>
+                  <div class="btn_fix">
+                    <i class="fas fa-pencil-alt"></i>
+                    <button id="fix_profile">Chỉnh sửa hồ sơ</button>
+                  </div>
+                </div>
+                <div class="date-create">
+                  <p>Ngày gia nhập: <span>Sep 22, 2021</span></p>
+                </div>
+                <div class="line-bottom"></div>
+              </div>
+
+              <div style="padding: 0 30px;">
+                <div class="profile_intro">
+                  <p>Giới thiệu</p>
+                  <div style="padding: 20px 0;">
+                    <textarea class="sharesomething" id="" placeholder="Hãy chia sẻ điều gì đó về bạn..."></textarea>
+                  </div>
+                </div>
+                <div class="line-bottom"></div>
+              </div>
+              <div style="padding: 0 30px;">
+                <div class="link-emoji">
+                  <div class="emoji_icon">
+                    <i class="las la-camera"></i>
+                    <i class="lar la-smile"></i>
+                    <i class="lar la-smile"></i>
+                    <i class="lar la-smile"></i>
+                  </div>
+                  <div class="line-bottom"></div>
+                </div>
+              </div>
+              <div class="btn-outprofile">
+                <button>Bỏ</button>
+                <button>Xuất bản</button>
+              </div>
+
+              <div class="view-huyhieu">
+                <div class="view_name">
+                  <span>Huy hiệu</span>
+                </div>
+                <div class="huyhieu_info">
+                  <div class="huyhieu_img">
+                    <i class="fas fa-heart"></i>
+                  </div>
+                  <div class="info_reader">
+                    <p>Reader</p>
+                    <p>reads less than 100 posts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane-profile">
+            <div class="file-title">
+              <span>Tệp</span>
+              <p>Xem các tệp do thành viên này tải lên ở bên dưới.</p>
+              <div class="linefile-bottom"></div>
+            </div>
+            <div class="not-found">
+              <div style="text-align: center;">
+                <h2>Chưa có tệp</h2>
+                <p>Vui lòng kiểm tra lại sau</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane-profile">
+            <div class="file-title">
+              <span>Chương trình của tôi</span>
+              <p>Kiểm tra trạng thái của các chương trình..</p>
+              <div class="linefile-bottom"></div>
+            </div>
+            <div class="found-course">
+              <div class="course__active">
+                <div>
+                  <img src="../../IMG/course.png" alt="">
+                </div>
+                <div>
+                  <p>Critical Thinking - Bộ kỹ năng Tư duy phản biện</p>
+                  <label for="">Giá:</label>
+                  <span>Blog member</span><br />
+                  <label for="">Thời lượng:</label>
+                  <span>Không giới hạn thời gian</span><br>
+                  <p id="openoutcourse">
+                    Rời khỏi chương trình
+                  </p>
+                </div>
+
+              </div>
+              <div class="linefile-bottom"></div>
+
+              <div class="course__active">
+                <div>
+                  <img src="../../IMG/course.png" alt="">
+                </div>
+                <div>
+                  <p>Critical Thinking - Bộ kỹ năng Tư duy phản biện</p>
+                  <label for="">Giá:</label>
+                  <span>Blog member</span><br />
+                  <label for="">Thời lượng:</label>
+                  <span>Không giới hạn thời gian</span>
+                  <p id="openoutcourse">
+                    Rời khỏi chương trình
+                  </p>
+                </div>
+              </div>
+              <div class="linefile-bottom"></div>
+            </div>
+          </div>
+
+          <div class="tab-pane-profile">
+            <div class="file-title">
+              <span>Gói đăng ký của tôi</span>
+              <p>Xem và quản lý các gói đăng ký bạn đã mua.</p>
+              <div class="linefile-bottom"></div>
+            </div>
+
+            <div class="course__buy">
+              <div class="top__buy">
+                <p>Blog Member</p>
+                <span>Có hiệu lực đến khi bị hủy</span>
+              </div>
+              <div class="center__buy">
+                <label>Gói miễn phí</label>
+                <label>
+                  <span>Ngày bắt đầu: <span>17 thg 10, 2021</span></span>
+                  <p>Số buổi còn lại: <span>100</span></p>
+                </label>
+              </div>
+              <div class="btn__cancel">
+                <span id="deploy">Hủy gói đăng ký</span>
+              </div>
+              <div class="linefile-bottom"></div>
+            </div>
+          </div>
+
+          <div class="tab-pane-profile">
+            <div class="profile-item">
+              <div style="padding: 30px 30px 0 30px;">
+                <div class="profile-title">
+                  <div class="name-titile">
+                    Tài khoản của tôi
+                  </div>
+                  <div class="btn_update">
+                    <button>Bỏ</button>
+                    <button>Cập nhật</button>
+                  </div>
+                </div>
+                <div class="date-create">
+                  <p>Xem và chỉnh sửa thông tin cá nhân của bạn ở bên dưới.</p>
+                </div>
+                <div class="line-bottomud"></div>
+              </div>
+
+              <div style="padding: 0 30px;">
+                <div class="profile_intro">
+                  <p>Thông tin công khai</p>
+                  <span>
+                    Thẻ hồ sơ của bạn hiển thị với tất cả thành viên của trang web này
+                  </span>
+                </div>
+                <div class="name__show">
+                  <label for="">Tên hiển thị *</label><br />
+                  <input type="text" value="DangThuHuyen">
+                </div>
+                <div class="line-bottomud"></div>
+                <div class="profile_intro">
+                  <p>Tài khoản</p>
+                  <span>
+                    Cập nhật và chỉnh sửa thông tin bạn chia sẻ với cộng đồng
+                  </span>
+                </div>
+                <div class="name__show">
+                  <label for="">Email đăng nhập:</label><br />
+                  <p>dangthuhuyen_blog@gmail.com</p>
+                  <p style="opacity: 0.6;">Không thể thay đổi email đăng nhập của bạn</p>
+                </div>
+
+                <div class="form_update">
+                  <div class="left__update">
+                    <label for="">Tên</label><br />
+                    <input type="text" value="DangThuHuyen">
+                    <br>
+                    <label for="">Email</label><br />
+                    <input type="text" value="dangthuhuyen_blog@gmail.com">
+                  </div>
+                  <div class="right__update">
+                    <label for="">Họ</label><br />
+                    <input type="text" value="">
+                    <br>
+                    <label for="">Điện thoại</label><br />
+                    <input type="text" value="">
+                  </div>
+                </div>
+                <div class="btn-update">
+                  <button>Bỏ</button>
+                  <button>Cập nhật</button>
+                </div>
+                <div class="line-bottomud"></div>
+                <div class="profile_intro">
+                  <p>Thiết lập tài khoản</p>
+                  <span>
+                    Cập nhật và chỉnh sửa thông tin bạn chia sẻ với cộng đồng
+                  </span>
+                </div>
+                <div class="url__page">
+                  <label for="">URL trang cộng đồng của bạn</label>
+                  <div class="get__url">
+                    <span>https://www.nguyenphivan.com/profile/dangthuhuyen/profile</span>
+                    <div class="url__update">
+                      <span id="url__update">Chỉnh sửa url</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line-bottomud"></div>
+                <div class="url__page">
+                  <label for="">Chế độ hiển thị hồ sơ</label>
+                  <div class="get__url">
+                    <span>Ẩn trang hồ sơ của bạn và các thông tin mạng xã hội trong tài khoản của bạn.</span>
+                    <div class="url__update">
+                      <span id="confirm">Đặt hồ sơ ở chế độ riêng tư</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line-bottomud"></div>
+                <div class="url__page">
+                  <label for="">Thành viên bị chặn</label>
+                  <div class="get__url">
+                    <span>Bạn không có thành viên nào bị chặn.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane-profile">
+            <div class="profile-item">
+              <div class="setting_title">
+                <div>
+                  <h2>Thiết lập thông báo</h2>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="setting_cancel">
+                <div class="cancel_content">
+                  <div class="cancel_title">
+                    <h3>Gói đăng ký blog</h3>
+                    <div>
+                      <p>Nhận email về bài đăng và cập nhật mới.Hủy đăng ký</p>
+                    </div>
+                  </div>
+                  <div class="cancel_btn">
+                    <button>Hủy đăng ký</button>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-blog">
+                <div class="report_content">
+                  <div class="left_report">
+                    <h3>Thông báo trên blog</h3>
+                  </div>
+                  <div class="right_report">
+                    <p>Thông báo qua email</p>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-checkbox">
+                <div class="checkbox_content">
+                  <div class="checkbox_title">
+                    <h3>Lượt thích</h3>
+                    <div>
+                      <p>Thông báo cho tôi khi các thành viên thích bài đăng và bình luận của tôi</p>
+                    </div>
+                  </div>
+                  <div class="switch_box box_1">
+                    <input type="checkbox" class="switch_1" checked>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-checkbox">
+                <div class="checkbox_content">
+                  <div class="checkbox_title">
+                    <h3>Bình luận</h3>
+                    <div>
+                      <p>Thông báo cho tôi khi các thành viên bình luận về bài đăng của tôi</p>
+                    </div>
+                  </div>
+                  <div class="switch_box box_1">
+                    <input type="checkbox" class="switch_1" checked>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-checkbox">
+                <div class="checkbox_content">
+                  <div class="checkbox_title">
+                    <h3>Theo dõi</h3>
+                    <div>
+                      <p>Thông báo cho tôi khi có cập nhật về thành viên và bài đăng mà tôi theo dõi</p>
+                    </div>
+                  </div>
+                  <div class="switch_box box_1">
+                    <input type="checkbox" class="switch_1" checked>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-blog">
+                <div class="report_content">
+                  <div class="left_report">
+                    <h3>Thông báo nhóm</h3>
+                  </div>
+                  <div class="right_report">
+                    <p>Thông báo qua email</p>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+
+              <div class="report-checkbox">
+                <div class="checkbox_content">
+                  <div class="checkbox_title">
+                    <h3>Tổng quan</h3>
+                    <div>
+                      <p>Thông báo cho tôi khi có hoạt động mới.</p>
+                    </div>
+                  </div>
+                  <div class="switch_box box_1">
+                    <input type="checkbox" class="switch_1" checked>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane-profile">
+            <div class="profile-item">
+              <div class="note_title">
+                <div class="note_content">
+                  <div>
+                    <h2>Thông báo</h2>
+                  </div>
+                  <div>
+                    <p>Đánh dấu tất cả là đã đọc
+                      (<span>37</span>)
+                    </p>
+                  </div>
+                </div>
+                <div class="linefile-bottom"></div>
+              </div>
+              <div class="note_list">
+                <ul>
+                  <li>
+                    <div style="display: flex;">
+                      <div class="avatar"><img src="../../IMG/dangthuhuyen_blog.jpg" alt=""></div>
+                      <div class="content_note">
+                        <p>
+                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id ducimus
+                          corrupti assumenda soluta, maxime totam voluptates adipisci
+                          similique eum? Reiciendis tempore veritatis deleniti dignissimos possimus
+                          necessitatibus enim sapiente aspernatur dicta?
+                        </p>
+                      </div>
+                    </div>
+                    <div class="realtime">
+                      <span>2</span>&nbsp;phút trước
+                      <i class="fas fa-circle"></i>
+                    </div>
+                  </li>
+                  <li>
+                    <div style="display: flex;">
+                      <div class="avatar"><img src="../../IMG/dangthuhuyen_blog.jpg" alt=""></div>
+                      <div class="content_note">
+                        <p>
+                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id ducimus
+                          corrupti assumenda soluta, maxime totam voluptates adipisci
+                          similique
+                          eum? Reiciendis tempore veritatis deleniti dignissimos possimus
+                          necessitatibus enim sapiente aspernatur dicta?
+                        </p>
+                      </div>
+                    </div>
+                    <div class="realtime">
+                      <span>2</span>&nbsp;phút trước
+                      <i class="fas fa-circle"></i>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="footer__content" style="background-color: #323232;">
+        <div class="contact__ft">
+          <h3>Hãy nhập vào email để phản hồi</h3>
+          <input type="text" placeholder="example@gmail.com">
+          <div>
+            <button>Subcribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="copyright__footer">
+        <p>@CopyRight 2021 by - DANG THU HUYEN</p>
+      </div>
+    </div>
+
+    <!-- ChatBot -->
+    <div class="chatbot">
+      <div class="btn_chatbot" onclick="openChatBot()">
+        <i class="lar la-comment"></i>
+        <span>Tin nhắn online</span>
+      </div>
+    </div>
+    <div class="chat_mess">
+      <div class="mess_admin">
+        <div>
+          <div class="nameadmin">
+            <p>Đặng Thu Huyền</p>
+          </div>
+          <div class="status">
+            <i class="fas fa-circle"></i>
+            <span>Trực tuyến</span>
+          </div>
+        </div>
+        <div class="close_chat" onclick="closeChatBot()">
+          <i class="las la-times"></i>
+        </div>
+      </div>
+      <div class="messeages">
+        <ul>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+          <li>hello cacban</li>
+        </ul>
+      </div>
+      <div class="input_mess">
+        <div class="messText">
+          <textarea name="" id="messsubmit" placeholder="Nhập vào tin nhắn của bạn"></textarea>
+        </div>
+        <div class="messEmoji">
+          <i class="las la-paperclip"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../JS/profile.js"></script>
+</html>

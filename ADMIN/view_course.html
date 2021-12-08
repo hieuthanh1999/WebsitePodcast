@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View course</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet"
+        href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="dashboard">
+                <div class="left">
+                    <span class="left__icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <div class="left__content">
+                        <!-- <div class="left__logo">LOGO</div> -->
+                        <div class="left__profile">
+                            <div class="left__image"><img src="./images/admin.png" alt=""></div>
+                            <p class="left__name">Dang Thu Huyen</p>
+                        </div>
+                        <ul class="left__menu">
+                            <li class="left__menuItem">
+                                <a href="index.html" class="left__title"><img src="assets/icon-dashboard.svg"
+                                        alt="">Home Page</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="assets/icon-tag.svg" alt="">Blog & podcast<img
+                                        class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="insert_post.html">Insert post</a>
+                                    <a class="left__link" href="view_post.html">View post</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="assets/icon-edit.svg" alt="">Category<img
+                                        class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="insert_category.html">Insert category</a>
+                                    <a class="left__link" href="view_category.html">View category</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="assets/icon-book.svg" alt="">Course<img
+                                        class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="insert_course.html">Insert course</a>
+                                    <a class="left__link" href="view_course.html">View course</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="view_customers.html" class="left__title"><img src="assets/icon-users.svg"
+                                        alt="">User</a>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="assets/icon-user.svg" alt="">Admin<img
+                                        class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="insert_admin.html">Insert admin</a>
+                                    <a class="left__link" href="view_admins.html">View admins</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <a href="" class="left__title"><img src="assets/icon-logout.svg" alt="">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Dashboard</div>
+                        <div class="right__search">
+                            <p class="right__desc">View courses</p>
+                            <div class="right__inputSearch">
+                                <input type="text" placeholder="Search here...">
+                                <i class="las la-search"></i>
+                            </div>
+                        </div>
+                        <div class="right__table">
+                            <div class="right__tableWrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Image</th>
+                                            <th>Title</th>
+                                            <th>Member</th>
+                                            <th>Content</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <tr>
+                                            <td data-label="STT">1</td>
+                                            <td data-label="Tiêu đề">
+                                                <img src="../IMG/instagram-logo.png" alt="">
+                                            </td>
+                                            <td data-label="Tên sản phẩm">Covid-19</td>
+                                            <td data-label="Giá SP">1000</td>
+                                            <td data-label="Mã giảm giá">
+                                                <p id="limit">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                                    Exercitationem eum illum laudantium in amet omnis dolore! Accusamus
+                                                    iusto dolore, doloremque qui earum labore consequatur eligendi
+                                                    dolores suscipit, quibusdam laboriosam? Exercitationem.
+                                                </p>
+                                            </td>
+                                            <td data-label="Sửa" class="right__iconTable"><a href="edit_course.html"><img
+                                                        src="assets/icon-edit.svg" alt=""></a></td>
+                                            <td data-label="Xoá" class="right__iconTable"><a href=""><img
+                                                        src="assets/icon-trash-black.svg" alt=""></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a href="" class="right__tableMore">
+                                <p>View all</p> <img src="assets/arrow-right-black.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+<script>
+    function truncateText(selector, maxLength) {
+        var element = document.querySelector(selector),
+            truncated = element.innerText;
+
+        if (truncated.length > maxLength) {
+            truncated = truncated.substr(0, maxLength) + '...';
+        }
+        return truncated;
+    }
+
+    document.querySelector('#limit').innerText = truncateText('#limit', 40);
+</script>
+</html>
