@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
   <div class="container">
     <!-- Header -->
     <header>
@@ -117,17 +118,18 @@
             </div>
           </ul>
           <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> -->
-          <div class="logout">
+          <div class="logout" id="logout">
             <ul>
+              <li id="name-profile"></li>
               <li><a href="">Profile</a></li>
               <li><a href="">My L&D Center</a></li>
               <li><a href="">My Account</a></li>
               <li class="line-logout"></li>
-              <li><a href="">Đăng xuất</a></li>
+              <li><a id="logouthome" href="homepage.html">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
-        <div class="categories__login">
+        <div class="categories__login" id="nonelogin">
           <div class="login__icon">
             <i class="fas fa-user"></i>
           </div>
@@ -479,5 +481,26 @@
 </body>
 <script src="../JS/homepage.js"></script>
 <!-- <script type="module" src="../../API/main_api.js"></script> -->
-
+<script>
+ 
+  let name = sessionStorage.getItem('user');
+  if(name != null){
+    console.log(name);
+    document.getElementById('nonelogin').style.display = 'none';
+     document.getElementById('logout').style.display = 'block';
+    document.getElementById('name-profile').innerHTML = 'Hi: '  + name;
+    document.getElementById('name-profile').style.color = 'white';
+  }
+  else{
+    console.log(name);
+    document.getElementById('logout').style.display = 'none';
+    document.getElementById('nonelogin').style.display = 'flex';
+    document.getElementById('name-profile');
+  }
+  var logout =  document.getElementById('logouthome');
+  logout.onclick = function(){
+    console.log(name);
+    sessionStorage.removeItem('user');
+  }
+</script>
 </html>

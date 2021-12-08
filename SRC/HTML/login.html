@@ -102,7 +102,9 @@ var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.spli
         data['user'].forEach(element => {
           if(email == element.email && pass == element.password){
           console.log('Success:');
+          sessionStorage.setItem('user',element.name);
           window.location.href = "homepage.html"
+         
         }
         })})
       .catch((error) => {
