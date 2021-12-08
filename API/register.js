@@ -46,9 +46,9 @@ function setData(data) {
 function setForm(){
     var btn_account = document.querySelector('#register_account');
     form.addEventListener('submit', function (e) {
-      e.preventDefault()
-      checkInputs()
-      alert("Dsadsa");
+      // e.preventDefault()
+      // checkInputs()
+      // alert("Dsadsa");
       let username = document.getElementById('username').value;
       let email = document.getElementById('email').value;
       let phoneNumber = document.getElementById('phone').value;
@@ -64,7 +64,8 @@ function setForm(){
             "ranker": null
         }
         setData(formData);
-    
+        window.location.href = "login.html"
+         
     })
 }
 
