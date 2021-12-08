@@ -1,0 +1,3 @@
+cho file .htaccess ra ngoai thu muc htdocs
+tao database post va import db vao
+khong chay liveserver
