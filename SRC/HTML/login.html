@@ -90,16 +90,17 @@
 
 </body>
 <script>
-var getUrl = window.location;
-var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+// var getUrl = window.location;
+// var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
   function submitInfor() {
     let pass = document.getElementById('password').value;
     let email = document.getElementById('email').value;
-    var url = baseUrl + "/API/user/read";
+    var url = 'http://localhost:8000/user';
       fetch(url)
       .then(response => response.json())
       .then(data => {
-        data['user'].forEach(element => {
+        console.log(data);
+        data.forEach(element => {
           if(email == element.email && pass == element.password){
           console.log('Success:');
           sessionStorage.setItem('user',element.name);
