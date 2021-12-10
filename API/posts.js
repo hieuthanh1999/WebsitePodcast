@@ -1,5 +1,5 @@
-var url = 'http://localhost:8000/post';
-fetch(url)
+// get api ra podcast
+fetch(url_podcast)
     .then(response => response.json())
     .then(function (responses) {
        
@@ -38,3 +38,23 @@ fetch(url)
     .catch((error) => {
         console.error('Error:', error);
     });
+
+
+// Get category
+fetch(url_category_pod)
+    .then(response => response.json())
+    .then(function (responses) {
+       
+       var htmls = responses.map(function (response) {
+            return  `
+            <li><a href="${response.url}">${response.name}</a></li>
+            `;
+       });
+       var html = htmls.join('');
+       document.getElementById('category-podcast').innerHTML = html;
+       document.getElementById('category-post').innerHTML = html;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+

@@ -32,27 +32,13 @@
             <li class="item_02">
               <a href="./blog.html">Blog</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="blog_title.html">Kỹ năng tương lai</a></li>
-                <li><a href="blog_title.html">Phát triển bản thân</a></li>
-                <li><a href="blog_title.html">Kinh doanh và Tech</a></li>
-                <li><a href="blog_title.html">Travel</a></li>
-                <li><a href="blog_title.html">Cuộc sống hạnh phúc</a></li>
-                <li><a href="blog_title.html">Thơ & Tản văn</a></li>
-                <li><a href="blog_title.html">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-post">
               </ul>
             </li>
             <li class="item_02">
               <a href="podcast.html" onclick="toggleMenu();">Podcast</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="">Câu chuyện kinh doanh</a></li>
-                <li><a href="">Khởi nghiệp</a></li>
-                <li><a href="">Kinh doanh và Tech</a></li>
-                <li><a href="">Travel</a></li>
-                <li><a href="">Cuộc sống hạnh phúc</a></li>
-                <li><a href="">Thơ & Tản văn</a></li>
-                <li><a href="">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-podcast">
               </ul>
             </li>
             <li class="item_02">
@@ -116,8 +102,8 @@
             <div class="dropdown-menu-footer">
               <span>Tất cả thông báo</span>
             </div>
-          </ul>
-          <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> -->
+          </ul>-->
+          <img style="display: none;" src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> 
           <div class="logout" id="logout">
             <ul>
               <li id="name-profile"></li>
@@ -233,7 +219,8 @@
             <li><a href="">Đọc báo cặp nhật cùng DTH</a> <span>(10)</span></li>
           </ul>
         </div>
-      <div class="posthome__item" id="postItem">
+        <div class="posthome__item" id="postItem">
+        </div>
       </div>
       <div class="pagination">
         <span class="p">«</span>
@@ -246,8 +233,6 @@
         <span class="p">»</span>
       </div>
     </div>
-    </div>
-    
 
     <!-- Listen -->
     <div class="listen">
@@ -339,29 +324,12 @@
     </div>
   </div>
 </body>
+<script src="../../API/url_home.js"></script>
 <script src="../JS/homepage.js"></script>
 <script src="../../API/posts.js"></script>
+
 <!-- <script type="module" src="../../API/main_api.js"></script> -->
 <script>
- 
-  let name = sessionStorage.getItem('user');
-  if(name != null){
-    console.log(name);
-    document.getElementById('nonelogin').style.display = 'none';
-     document.getElementById('logout').style.display = 'block';
-    document.getElementById('name-profile').innerHTML = 'Hi: '  + name;
-    document.getElementById('name-profile').style.color = 'white';
-  }
-  else{
-    console.log(name);
-    document.getElementById('logout').style.display = 'none';
-    document.getElementById('nonelogin').style.display = 'flex';
-    document.getElementById('name-profile');
-  }
-  var logout =  document.getElementById('logouthome');
-  logout.onclick = function(){
-    console.log(name);
-    sessionStorage.removeItem('user');
-  }
+
 </script>
 </html>
