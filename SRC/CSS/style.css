@@ -21,7 +21,11 @@ body {
   width: 100%;
   height: auto;
 }
-
+.iframe{
+  width: 200%;
+  height: 400px;
+  align-items: center;
+}
 /* Header */
 
 /* 

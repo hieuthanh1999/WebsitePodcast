@@ -83,39 +83,3 @@ function setForm(){
 }
 
 setForm();
-
-
-// function submitInfor() {
-//   var postApi = "http://localhost:8080/authenticate"
-// let form = document.forms["myForm"];
-// let fd = new FormData(form);
-// let data = {};
-// for (let [key, prop] of fd) {
-//   data[key] = prop;
-// }
-// VALUE = JSON.stringify(data, null, 2);
-
-// const myHeaders = new Headers();
-// myHeaders.append('Content-Type', 'application/json');
-// myHeaders.append('Access-Control-Allow-Origin','*')
-// myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS')
-// myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept')
-
-
-// fetch(postApi, {
-//   method: 'POST',
-//   headers: myHeaders,
-//   mode:"cors",
-//   cache: 'default',
-//   body: VALUE,
-//   Credential:false,
-// })
-//   .then(data => data.json())
-//   .then(data => { console.log(data)
-//     localStorage.setItem("token",data.jwtToken)
-//     window.location.href = "WebsitePodcast/FE/SRC/HTML/homepage.html"
-//    })
-//   .catch((err) => {
-//     console.error(err);
-//   })
-// }
