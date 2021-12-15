@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert admin</title>
+    <title>View category</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container">
@@ -81,27 +83,25 @@
                 <div class="right">
                     <div class="right__content">
                         <div class="right__title">Dashboard</div>
-                        <p class="right__desc">Insert admin</p>
-                        <div class="right__formWrapper">
-                            <form action="" method="post">
-                                <div class="right__inputWrapper">
-                                    <label for="name">Name admin</label>
-                                    <input type="text" placeholder="Name admin">
-                                </div>
-                                <div class="right__inputWrapper">
-                                    <label for="email">Email</label>
-                                    <input type="text" placeholder="Email">
-                                </div>
-                                <div class="right__inputWrapper">
-                                    <label for="password">Password</label>
-                                    <input type="text" placeholder="Pass">
-                                </div>
-                                <div class="right__inputWrapper">
-                                    <label for="image">Image</label>
-                                    <input type="file">
-                                </div>
-                                <button class="btn" type="submit">ADD</button>
-                            </form>
+                        <p class="right__desc">View category</p>
+                        <div class="right__table">
+                            <div class="right__tableWrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Update</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="list-category-podcast">
+                                     
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,5 +110,7 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="API/index.js"></script>    
 </body>
+
 </html>

@@ -19,8 +19,8 @@
                     <div class="left__content">
                         <!-- <div class="left__logo">LOGO</div> -->
                         <div class="left__profile">
-                            <div class="left__image"><img src="./images/admin.png" alt=""></div>
-                            <p class="left__name">Dang Thu Huyen</p>
+                            <div class="left__image"><img id="image-admin" src="" alt=""></div>
+                            <p id="username-admin" class="left__name"></p>
                         </div>
                         <ul class="left__menu">
                             <li class="left__menuItem">
@@ -33,14 +33,23 @@
                                 <div class="left__text">
                                     <a class="left__link" href="insert_post.html">Insert post</a>
                                     <a class="left__link" href="view_post.html">View post</a>
+                                    <a class="left__link" href="view_podcast.html">View podcast</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <div class="left__title"><img src="assets/icon-edit.svg" alt="">Category<img
+                                <div class="left__title"><img src="assets/icon-edit.svg" alt="">Category Blog<img
                                         class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
                                 <div class="left__text">
                                     <a class="left__link" href="insert_category.html">Insert category</a>
                                     <a class="left__link" href="view_category.html">View category</a>
+                                </div>
+                            </li>
+                            <li class="left__menuItem">
+                                <div class="left__title"><img src="assets/icon-edit.svg" alt="">Category PodCast<img
+                                        class="left__iconDown" src="assets/arrow-down.svg" alt=""></div>
+                                <div class="left__text">
+                                    <a class="left__link" href="insert_category.html">Insert category</a>
+                                    <a class="left__link" href="view_categorypostcast.html">View category</a>
                                 </div>
                             </li>
                             <li class="left__menuItem">
@@ -64,7 +73,7 @@
                                 </div>
                             </li>
                             <li class="left__menuItem">
-                                <a href="" class="left__title"><img src="assets/icon-logout.svg" alt="">Logout</a>
+                                <a   id="logoutadmin" class="left__title"><img src="assets/icon-logout.svg" alt="">Logout</a>
                             </li>
                         </ul>
                     </div>

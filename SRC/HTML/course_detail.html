@@ -31,31 +31,17 @@
       <div class="categories">
         <div class="categories__menu">
           <ul class="menu">
-            <li><a href="" onclick="toggleMenu();">Trang chủ</a></li>
+            <li><a href="homepage.html" onclick="toggleMenu();">Trang chủ</a></li>
             <li class="item_02">
               <a href="./blog.html">Blog</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="blog_title.html">Kỹ năng tương lai</a></li>
-                <li><a href="blog_title.html">Phát triển bản thân</a></li>
-                <li><a href="blog_title.html">Kinh doanh và Tech</a></li>
-                <li><a href="blog_title.html">Travel</a></li>
-                <li><a href="blog_title.html">Cuộc sống hạnh phúc</a></li>
-                <li><a href="blog_title.html">Thơ & Tản văn</a></li>
-                <li><a href="blog_title.html">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-post">
               </ul>
             </li>
             <li class="item_02">
               <a href="podcast.html" onclick="toggleMenu();">Podcast</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="">Câu chuyện kinh doanh</a></li>
-                <li><a href="">Khởi nghiệp</a></li>
-                <li><a href="">Kinh doanh và Tech</a></li>
-                <li><a href="">Travel</a></li>
-                <li><a href="">Cuộc sống hạnh phúc</a></li>
-                <li><a href="">Thơ & Tản văn</a></li>
-                <li><a href="">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-podcast">
               </ul>
             </li>
             <li class="item_02">
@@ -69,7 +55,7 @@
               </ul>
             </li>
             <li><a href="homepage.html#books" onclick="toggleMenu();">Sách</a></li>
-            <li class="item_05"><a href="courses.html" onclick="toggleMenu();" class="active">Khóa học</a></li>
+            <li class="item_05"><a href="courses.html" onclick="toggleMenu();">Khóa học</a></li>
           </ul>
         </div>
         <div class="contact__icon">
@@ -82,7 +68,7 @@
             <i class="fas fa-bell dropdown-toggle" data-toggle="notificationMenu"></i>
             <span class="firstspan">40</span>
           </div>
-          <ul id="notificationMenu" class="dropdown-menu notification-menu">
+          <!-- <ul id="notificationMenu" class="dropdown-menu notification-menu">
             <div class="dropdown-menu-header">
               <span>Thông báo</span>
             </div>
@@ -119,19 +105,20 @@
             <div class="dropdown-menu-footer">
               <span>Tất cả thông báo</span>
             </div>
-          </ul>
-          <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile">
-          <div class="logout">
+          </ul>-->
+         <img style="display: none;" src="" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> 
+          <div class="logout" id="logout">
             <ul>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="profile.html">My L&D Center</a></li>
-              <li><a href="profile.html">My Account</a></li>
+              <li id="name-profile"></li>
+              <li><a href="">Profile</a></li>
+              <li><a href="">My L&D Center</a></li>
+              <li><a href="">My Account</a></li>
               <li class="line-logout"></li>
-              <li><a href="">Đăng xuất</a></li>
+              <li><a id="logouthome" href="homepage.html">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
-        <div class="categories__login">
+        <div class="categories__login" id="nonelogin">
           <div class="login__icon">
             <i class="fas fa-user"></i>
           </div>
@@ -263,83 +250,9 @@
         </div>
       </div>
 
-      <div class="right_coursedt">
-        <div class="right__member">
-          <p>100</p><span>&nbsp;Người tham dự&nbsp;</span>
-        </div>
-        <div class="right__bannerimg">
-          <img src="../../IMG/course.png" alt="">
-        </div>
-        <div class="right__maincontent">
-          <div class="bannercourse">
-            <div class="course_img">
-              <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
-            </div>
-            <div class="course_info">
-              <p>Đặng Thu Huyền's Podcast</p>
-              <span>Khoá học Quản trị bản thân - Phần 9</span>
-              <div class="iconSpotify">
-                <i class="fab fa-spotify" title="Spotify"></i>
-              </div>
-            </div>
-          </div>
-
-          <!-- Phần hiển thị xử lý audio  -->
-          <div class="course_audio">
-            <div class="player">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div class="left">0.00</div>
-                <input id="progresspcdt" class="progresspcdt" type="range" value="0" step="1" min="0" max="100">
-                <div class="right">0.00</div>
-              </div>
-              <div class="control">
-                <div class="btn btn-repeat">
-                  <i class="las la-sync-alt" title="Repeat"></i>
-                </div>
-                <div class="btn btn-prev">
-                  <i class="las la-undo-alt" title="Prev 10s"></i>
-                  <span>10</span>
-                </div>
-                <div class="btn btn-toggle-play">
-                  <i class="fas fa-pause icon-pause"></i>
-                  <i class="fas fa-play icon-play"></i>
-                </div>
-                <div class="btn btn-next">
-                  <i class="las la-redo-alt" title="Skip 10s"></i>
-                  <span>10</span>
-                </div>
-                <div class="btn btn-download">
-                  <i class="las la-download"></i>
-                </div>
-              </div>
-              <audio id="audio" src=""></audio>
-            </div>
-          </div>
-
-          <!-- Nội dung mô tả podcast -->
-          <div class="pod-dt" id="podContent">
-            <div class="pod_curentime">
-              <span>Đặng Thu Huyền</span>&nbsp; | &nbsp;<span class="realdate">6/10/2021</span>
-            </div>
-            <div class="pod_des">
-              <p>
-                Warren Buffet đã từng nói, nếu bạn muốn thành công trong cuộc sống thì một trong những điều quan trọng
-                nhất
-                bạn cần làm là: Invest in relationships with honest and ethical people - Đầu tư vào quan hệ với những
-                người
-                chân thật và có sống có giá trị đạo đức. <br><br>Đó chính là nền tảng quan trọng hay hệ thống hỗ trợ tốt
-                nhất
-                cho sự
-                thành công của một con người. Trong podcast này, Phi Vân sẽ chia sẻ 3 lý do tại sao và 3 lợi ích vững
-                bền mà
-                bạn sẽ có được khi đưa ra quyết định đầu tư có thể nói là mang tầm ảnh hưởng lớn nhất này đến cuộc đời
-                của
-                bạn.
-              </p>
-            </div>
-          </div>
-
-        </div>
+      <div class="right_coursedt" id="course-details">
+       
+        
       </div>
     </div>
 
@@ -400,7 +313,90 @@
     </div>
   </div>
 </body>
-
+<script src="../../API/url_home.js"></script>
+<script src="../../API/posts.js"></script>
 <script src="../JS/course_detail.js"></script>
+<script>
+  let idcourse = sessionStorage.getItem('id-course');
+  console.log(idcourse);
+  // get api ra podcast
+  var urlcoursedetails = 'http://localhost:8000/course';
+  fetch(urlcoursedetails + '/' + idcourse)
+    .then(response => response.json())
+    .then(function (responses) {
+      console.log(responses);
+      var htmls = `
+        <div>
+          <div class="right__member">
+              <p>${responses.totalUser}</p><span>&nbsp;Người tham dự&nbsp;</span>
+          </div>
+          <div class="right__bannerimg">
+              <img src="${responses.image}" alt="">
+          </div>
+          <div class="right__maincontent">
+              <div class="bannercourse">
+                <div class="course_img">
+                  <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                </div>
+                <div class="course_info">
+                  <p>Đặng Thu Huyền's Podcast</p>
+                  <span>${responses.name}</span>
+                  <div class="iconSpotify">
+                    <i class="fab fa-spotify" title="Spotify"></i>
+                  </div>
+                </div>
+              </div>
 
+              <!-- Phần hiển thị xử lý audio  -->
+              <div class="course_audio">
+                <div class="player">
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div class="left">0.00</div>
+                    <input id="progresspcdt" class="progresspcdt" type="range" value="0" step="1" min="0" max="100">
+                    <div class="right">0.00</div>
+                  </div>
+                  <div class="control">
+                    <div class="btn btn-repeat">
+                      <i class="las la-sync-alt" title="Repeat"></i>
+                    </div>
+                    <div class="btn btn-prev">
+                      <i class="las la-undo-alt" title="Prev 10s"></i>
+                      <span>10</span>
+                    </div>
+                    <div class="btn btn-toggle-play">
+                      <i class="fas fa-pause icon-pause"></i>
+                      <i class="fas fa-play icon-play"></i>
+                    </div>
+                    <div class="btn btn-next">
+                      <i class="las la-redo-alt" title="Skip 10s"></i>
+                      <span>10</span>
+                    </div>
+                    <div class="btn btn-download">
+                      <i class="las la-download"></i>
+                    </div>
+                  </div>
+                  <audio id="audio" src=""></audio>
+                </div>
+              </div>
+
+              <!-- Nội dung mô tả podcast -->
+              <div class="pod-dt" id="podContent">
+                <div class="pod_curentime">
+                  <span>Đặng Thu Huyền</span>&nbsp; | &nbsp;<span class="realdate">6/10/2021</span>
+                </div>
+                <div class="pod_des">
+                  <p>
+                    ${responses.description}
+                  </p>
+                </div>
+              </div>
+          </div>
+          </div> `;
+      document.getElementById('course-details').innerHTML = htmls;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+</script>
 </html>

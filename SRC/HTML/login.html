@@ -102,10 +102,19 @@
         console.log(data);
         data.forEach(element => {
           if(email == element.email && pass == element.password){
-          console.log('Success:');
-          sessionStorage.setItem('user',element.name);
-          window.location.href = "homepage.html"
-         
+            if(element.type == 'admin'){
+              console.log('Success: admin');
+              sessionStorage.setItem('useradmin',element.name);
+              sessionStorage.setItem('avataradmin',element.avatar);
+              window.location.href = "../../ADMIN/index.html";
+            }else{
+              console.log('Success: home');
+              sessionStorage.setItem('user',element.name);
+              sessionStorage.setItem('avatar',element.avatar);
+              window.location.href = "homepage.html";
+            }
+            // console.log(element.name);
+            // console.log(element.avatar);
         }
         })})
       .catch((error) => {

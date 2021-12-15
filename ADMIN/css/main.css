@@ -247,7 +247,7 @@ body {
 }
 
 .left__menuItem.open .left__text {
-  height: 70px;
+  height: 100px;
   padding-top: 10px;
 }
 

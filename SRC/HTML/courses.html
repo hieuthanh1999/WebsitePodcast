@@ -29,29 +29,15 @@
           <ul class="menu">
             <li><a href="homepage.html" onclick="toggleMenu();">Trang chủ</a></li>
             <li class="item_02">
-              <a href="./blog.html">Blog</a>
+              <a href="./course.html">course</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="blog_title.html">Kỹ năng tương lai</a></li>
-                <li><a href="blog_title.html">Phát triển bản thân</a></li>
-                <li><a href="blog_title.html">Kinh doanh và Tech</a></li>
-                <li><a href="blog_title.html">Travel</a></li>
-                <li><a href="blog_title.html">Cuộc sống hạnh phúc</a></li>
-                <li><a href="blog_title.html">Thơ & Tản văn</a></li>
-                <li><a href="blog_title.html">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-post">
               </ul>
             </li>
             <li class="item_02">
               <a href="podcast.html" onclick="toggleMenu();">Podcast</a>
               <span><i class="fas fa-chevron-down"></i></span>
-              <ul class="sub_menu">
-                <li><a href="">Câu chuyện kinh doanh</a></li>
-                <li><a href="">Khởi nghiệp</a></li>
-                <li><a href="">Kinh doanh và Tech</a></li>
-                <li><a href="">Travel</a></li>
-                <li><a href="">Cuộc sống hạnh phúc</a></li>
-                <li><a href="">Thơ & Tản văn</a></li>
-                <li><a href="">Phỏng vấn báo chí</a></li>
+              <ul class="sub_menu" id="category-podcast">
               </ul>
             </li>
             <li class="item_02">
@@ -65,7 +51,7 @@
               </ul>
             </li>
             <li><a href="homepage.html#books" onclick="toggleMenu();">Sách</a></li>
-            <li class="item_05"><a href="courses.html" onclick="toggleMenu();" class="active">Khóa học</a></li>
+            <li class="item_05"><a href="courses.html" onclick="toggleMenu();">Khóa học</a></li>
           </ul>
         </div>
         <div class="contact__icon">
@@ -86,7 +72,7 @@
               <li class="dropdown-menu-item">
                 <a href="#" class="dropdown-menu-link">
                   <div>
-                    <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                    <img src="../../IMG/dangthuhuyen_course.jpg" alt="">
                   </div>
                   <span>
                     Hãy cập nhật và chia sẻ những kiến thức mới cùng tôi
@@ -100,7 +86,7 @@
               <li class="dropdown-menu-item">
                 <a href="#" class="dropdown-menu-link">
                   <div>
-                    <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                    <img src="../../IMG/dangthuhuyen_course.jpg" alt="">
                   </div>
                   <span>
                     Hãy cập nhật và chia sẻ những kiến thức mới cùng tôi
@@ -115,19 +101,20 @@
             <div class="dropdown-menu-footer">
               <span>Tất cả thông báo</span>
             </div>
-          </ul>
-          <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> -->
-          <div class="logout">
+          </ul>-->
+         <img style="display: none;" src="" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> 
+          <div class="logout" id="logout">
             <ul>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="profile.html">My L&D Center</a></li>
-              <li><a href="profile.html">My Account</a></li>
+              <li id="name-profile"></li>
+              <li><a href="">Profile</a></li>
+              <li><a href="">My L&D Center</a></li>
+              <li><a href="">My Account</a></li>
               <li class="line-logout"></li>
-              <li><a href="">Đăng xuất</a></li>
+              <li><a id="logouthome" href="homepage.html">Đăng xuất</a></li>
             </ul>
           </div>
         </div>
-        <div class="categories__login">
+        <div class="categories__login" id="nonelogin">
           <div class="login__icon">
             <i class="fas fa-user"></i>
           </div>
@@ -140,89 +127,7 @@
     </header>
 
     <div class="course">
-      <div class="list_courses">
-        <div class="item__course">
-          <a class="course__img" href="course_detail.html">
-            <img src="../../IMG/course.png" alt="">
-          </a>
-          <div>
-            <div class="course__title">
-              <a href="course_detail.html">
-                <h3>Critical Thinking - Bộ kỹ năng Tư duy phản biện </h3>
-                <p>
-                  3.119 Người tham dự
-                </p>
-              </a>
-            </div>
-            <div class="line"></div>
-            <div class="course_member">
-              Blog Member
-            </div>
-            <div class="course__btn">
-              <button>Tham gia</button>
-            </div>
-          </div>
-        </div>
-        <div class="item__course">
-          <a class="course__img" href="course_detail.html">
-            <img src="" alt="">
-          </a>
-          <div class="course__title">
-            <a href="course_detail.html">
-              <h3>Critical Thinking - Bộ kỹ năng Tư duy phản biện</h3>
-              <p>
-                3.119 Người tham dự
-              </p>
-            </a>
-          </div>
-          <div class="line"></div>
-          <div class="course_member">
-            Blog Member
-          </div>
-          <div class="course__btn">
-            <button>Tham gia</button>
-          </div>
-        </div>
-        <div class="item__course">
-          <a class="course__img" href="course_detail.html">
-            <img src="" alt="">
-          </a>
-          <div class="course__title">
-            <a href="course_detail.html">
-              <h3>Critical Thinking - Bộ kỹ năng Tư duy phản biện</h3>
-              <p>
-                3.119 Người tham dự
-              </p>
-            </a>
-          </div>
-          <div class="line"></div>
-          <div class="course_member">
-            Blog Member
-          </div>
-          <div class="course__btn">
-            <button>Tham gia</button>
-          </div>
-        </div>
-        <div class="item__course">
-          <a class="course__img" href="course_detail.html">
-            <img src="" alt="">
-          </a>
-          <div class="course__title">
-            <a href="course_detail.html">
-              <h3>Critical Thinking - Bộ kỹ năng Tư duy phản biện</h3>
-              <p>
-                3.119 Người tham dự
-              </p>
-            </a>
-          </div>
-          <div class="line"></div>
-          <div class="course_member">
-            Blog Member
-          </div>
-          <div class="course__btn">
-            <button>Tham gia</button>
-          </div>
-        </div>
+      <div class="list_courses" id="list-course">
       </div>
     </div>
 
@@ -297,6 +202,50 @@
     </div>
   </div>
 </body>
+<script src="../../API/url_home.js"></script>
 <script src="../JS/course.js"></script>
+<script src="../../API/posts.js"></script>
+<script>
+  // get api ra podcast
+var url_course = 'http://localhost:8000/course';
+fetch(url_course)
+    .then(response => response.json())
+    .then(function (responses) {
+       console.log(responses);
+       var htmls = responses.map(function (response) {
+            return  `
+            <div class="item__course">
+          <a class="course__img" href="" onclick="course_click( ${response.id})">
+            <img src="${response.image}" alt="">
+          </a>
+          <div>
+            <div class="course__title">
+              <a href="course_detail.html">
+                <h3>${response.name}</h3>
+                <p>
+                  ${response.totalUser} Người tham dự
+                </p>
+              </a>
+            </div>
+            <div class="line"></div>
+            <div class="course_member">
+              course Member
+            </div>
+            <div class="course__btn">
+              <button onclick="course_click( ${response.id})">Tham gia</button>
+            </div>
+          </div>
+        </div>
+            `;
+       });
+       var html = htmls.join('');
+       document.getElementById('list-course').innerHTML = html;
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
 
+    
+
+</script>
 </html>
