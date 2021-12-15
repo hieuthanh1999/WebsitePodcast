@@ -35,27 +35,13 @@
               <li class="item_02">
                 <a href="./blog.html">Blog</a>
                 <span><i class="fas fa-chevron-down"></i></span>
-                <ul class="sub_menu">
-                  <li><a href="blog_title.html">Kỹ năng tương lai</a></li>
-                  <li><a href="blog_title.html">Phát triển bản thân</a></li>
-                  <li><a href="blog_title.html">Kinh doanh và Tech</a></li>
-                  <li><a href="blog_title.html">Travel</a></li>
-                  <li><a href="blog_title.html">Cuộc sống hạnh phúc</a></li>
-                  <li><a href="blog_title.html">Thơ & Tản văn</a></li>
-                  <li><a href="blog_title.html">Phỏng vấn báo chí</a></li>
+                <ul class="sub_menu" id="category-post">
                 </ul>
               </li>
               <li class="item_02">
-                <a href="podcast.html" onclick="toggleMenu();" class="active">Podcast</a>
+                <a href="podcast.html" onclick="toggleMenu();">Podcast</a>
                 <span><i class="fas fa-chevron-down"></i></span>
-                <ul class="sub_menu">
-                  <li><a href="">Câu chuyện kinh doanh</a></li>
-                  <li><a href="">Khởi nghiệp</a></li>
-                  <li><a href="">Kinh doanh và Tech</a></li>
-                  <li><a href="">Travel</a></li>
-                  <li><a href="">Cuộc sống hạnh phúc</a></li>
-                  <li><a href="">Thơ & Tản văn</a></li>
-                  <li><a href="">Phỏng vấn báo chí</a></li>
+                <ul class="sub_menu" id="category-podcast">
                 </ul>
               </li>
               <li class="item_02">
@@ -119,19 +105,20 @@
               <div class="dropdown-menu-footer">
                 <span>Tất cả thông báo</span>
               </div>
-            </ul>
-            <img src="../../IMG/dangthuhuyen_blog.jpg" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> -->
-            <div class="logout">
+            </ul>-->
+           <img style="display: none;" src="" class="user-img" alt="Tài khoản" title="Tài khoản" id="profile"> 
+            <div class="logout" id="logout">
               <ul>
-                <li><a href="profile.html">Profile</a></li>
-                <li><a href="profile.html">My L&D Center</a></li>
-                <li><a href="profile.html">My Account</a></li>
+                <li id="name-profile"></li>
+                <li><a href="">Profile</a></li>
+                <li><a href="">My L&D Center</a></li>
+                <li><a href="">My Account</a></li>
                 <li class="line-logout"></li>
-                <li><a href="">Đăng xuất</a></li>
+                <li><a id="logouthome" href="homepage.html">Đăng xuất</a></li>
               </ul>
             </div>
           </div>
-          <div class="categories__login">
+          <div class="categories__login" id="nonelogin">
             <div class="login__icon">
               <i class="fas fa-user"></i>
             </div>
@@ -142,7 +129,6 @@
           <div class="toggle" onclick="toggleMenu()"></div>
         </div>
       </header>
-
       <!-- All episode -->
       <div class="episode">
         <a href="javascript:history.go(-1)">
@@ -590,6 +576,8 @@
   </div>
 </body>
 <script src="../JS/podcast_detail.js"></script>
+<script src="../../API/url_home.js"></script>
+<script src="../../API/posts.js"></script>
 <script>
   let idpostcast = sessionStorage.getItem('id-podcast');
   console.log(idpostcast);
@@ -632,7 +620,7 @@
               <i class="las la-undo-alt" title="Prev 10s"></i>
               <span>10</span>
             </div>
-            <div class="btn btn-toggle-play">
+            <div id="btn-play" class="btn btn-toggle-play">
               <i class="fas fa-pause icon-pause"></i>
               <i class="fas fa-play icon-play"></i>
             </div>

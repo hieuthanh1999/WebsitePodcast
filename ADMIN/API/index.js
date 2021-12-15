@@ -7,6 +7,7 @@ myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
 //Xử lý session userƯ
 let name = sessionStorage.getItem('useradmin');
+let id = sessionStorage.getItem('idadmin');
 let avatar = sessionStorage.getItem('avataradmin');
 if(name != null){
   console.log(name);
@@ -19,6 +20,7 @@ logoutadmin.onclick = function(){
   console.log(name);
   console.log(avatar);
   sessionStorage.removeItem('useradmin');
+  sessionStorage.removeItem('idadmin');
   sessionStorage.removeItem('avataradmin');
   var getUrl = window.location;
   var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
@@ -39,7 +41,9 @@ function start() {
   getApiAdmin(url_category ,getListCategory);
   getApiAdmin(url_category ,getListCategoryPodCast);
   getApiAdmin(url_blog ,getListBlog);getListBlog
-  getApiAdmin(url_podcast ,getListPodCast);
+  getApiAdmin(url_podcast ,getListPodCast);getCoursePost
+  getApiAdmin(url_category ,getCategoryPost);
+  getApiAdmin(url_course ,getCoursePost);
 }
 start();
 
@@ -229,6 +233,26 @@ function getListPodCast(responses) {
       });
       var html = htmls.join('');
       document.getElementById('list-pod-cast').innerHTML = html;
+}
+
+//GET List PodCast
+function getCategoryPost(responses) {
+    var htmls = responses.map(function (response) {
+      return  `
+          <option value="${response.id}">${response.name}</option>
+        `;
+      });
+      var html = htmls.join('');
+      document.getElementById('postcategory').innerHTML = html;
+}
+function getCoursePost(responses) {
+  var htmls = responses.map(function (response) {
+    return  `
+        <option value="${response.id}">${response.name}</option>
+      `;
+    });
+    var html = htmls.join('');
+    document.getElementById('courses_name').innerHTML = html;
 }
 // function deleteUser(id){
 //     var url_user = 'http://localhost:8000/user'  + '/' + id;

@@ -105,6 +105,7 @@
             if(element.type == 'admin'){
               console.log('Success: admin');
               sessionStorage.setItem('useradmin',element.name);
+              sessionStorage.setItem('idadmin',element.id);
               sessionStorage.setItem('avataradmin',element.avatar);
               window.location.href = "../../ADMIN/index.html";
             }else{

@@ -85,25 +85,25 @@
                         <div class="right__title">Dashboard</div>
                         <p class="right__desc">Insert post</p>
                         <div class="right__formWrapper">
-                            <form action="" method="post" enctype="multipart/form-data" id="formpost">
+                            <form action="" method="post" enctype="multipart/form-data" id="formpost2">
                                 <div class="containdiv">
                                     <div class="div">
                                         <div class="right__inputWrapper">
                                             <label for="title">Title</label>
-                                            <input type="text" id="title" placeholder="Tiêu đề">
+                                            <input type="text" id="title2" placeholder="Tiêu đề">
                                         </div>
                                         <div class="right__inputWrapper">
                                             <label for="image">Image</label>
-                                            <input type="file" id="fileimage">
+                                            <input type="file" id="fileimage2">
                                         </div>
                                         <div class="right__inputWrapper">
                                             <label for="image">Audio</label>
-                                            <input type="file" id="fileaudio">
+                                            <input type="file" id="fileaudio2">
                                         </div>
 
                                         <div class="right__inputWrapper">
                                             <label for="desc">Content</label>
-                                            <textarea name="" id="content" cols="30" rows="15"
+                                            <textarea name="" id="content2" cols="30" rows="15"
                                                 placeholder="Write something..."></textarea>
                                         </div>
                                         <button class="btn" onclick="submit_blog()" type="submit">ADD</button>
@@ -116,7 +116,7 @@
                                               
                                             </select>
                                         </div>
-                                        <div class="right__inputWrapper" id="podcast2" style="display: none">
+                                        <div class="right__inputWrapper" id="podcast2">
                                             <label for="label">Course</label>
                                             <select  name="" id="courses_name">
 
@@ -124,7 +124,7 @@
                                         </div>
                                         <div class="right__inputWrapper">
                                             <label for="p_category">Rank</label>
-                                            <select name="" id="ranker">
+                                            <select name="" id="ranker2">
                                                 <option disabled selected>Select rank</option>
                                                 <option value="1">vàng</option>
                                                 <option value="2">kim cương</option>
@@ -145,57 +145,53 @@
     <script src="API/index.js"></script>
 </body>
 <script>
-        const form = document.getElementById('formpost')
-        var postApiBlog= "http://localhost:8000/post";
+        const form2 = document.getElementById('formpost2')
         var postApiPod= "http://localhost:8000/podcast";
-            form.addEventListener('submit', function (e) {
-            let input = (document.getElementById('fileimage').value).split("\\").pop();;
-           
-            let title = document.getElementById('title').value;
-            let content = document.getElementById('content').value;
+        form2.addEventListener('submit', function (e) {
+            let input = (document.getElementById('fileimage2').value).split("\\").pop();;
+            let courses_name = document.getElementById('courses_name').value;
+            let inputaudio = (document.getElementById('fileaudio2').value).split("\\").pop();
+            let title = document.getElementById('title2').value;
+            let content = document.getElementById('content2').value;
             let postcategory = document.getElementById('postcategory').value;
-            let ranker = document.getElementById('ranker').value;
+            let ranker = document.getElementById('ranker2').value;
             var getUrl = window.location;
             var localhost = getUrl.protocol + "//" + getUrl.host + "/";
-            let id = sessionStorage.getItem('idadmin');
+            let idx = sessionStorage.getItem('idadmin');
             let name = sessionStorage.getItem('nameadmin');
-            var datas =  {
-                "id_user": id,
+            alert(idx);
+            var datas2 =  {
+                "id_user": idx,
                 "id_category": postcategory,
-                "user": name,
+                "id_course": courses_name,
                 "title": title,
-                "image": localhost+ "WebsitePodcast/IMG/" + input,
-                "content": content,
-                "numview": null,
-                "numcomment": null,
-                "numlove":null,
-                "islove": null,
-                "isgroup": null,
-                "idgroup": null,
-                "ranker": ranker
-    };
+                "image": localhost + "WebsitePodcast/IMG/" + input,
+                "audio": localhost + "WebsitePodcast/AUDIO/" + inputaudio,
+                "content": content
+                };
 
-            VALUE = JSON.stringify(datas);
+            VALUE2 = JSON.stringify(datas2);
+            alert(VALUE2);
 
-  const myHeaders = new Headers();
-  myHeaders.append('Content-Type', 'application/json');
-  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
-  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
-  myHeaders.append('Access-Control-Allow-Origin', '*');
-  myHeaders.append('Access-Control-Allow-Credentials', 'true');
-    fetch(postApiBlog, {
-    method: 'POST',
-    headers: myHeaders,
-    mode: 'no-cors',
-    body: VALUE
-  })
-    .then(data => {
-      console.log(data);
-    //   window.location.href = "view_admins.html";
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+        const myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+        myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+        myHeaders.append('Access-Control-Allow-Origin', '*');
+        myHeaders.append('Access-Control-Allow-Credentials', 'true');
+            fetch(postApiPod, {
+            method: 'POST',
+            headers: myHeaders,
+            mode: 'no-cors',
+            body: VALUE2
+        })
+            .then(data => {
+            console.log(data);
+            //   window.location.href = "view_admins.html";
+            })
+            .catch((err) => {
+            console.error(err);
+            });
 });
 </script>
 

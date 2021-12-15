@@ -109,7 +109,7 @@ logoutProfile.addEventListener('click', () => {
 // let preTime = $('.btn-prev')
 // let repeat = $('.btn-repeat')
 
-let play = document.querySelector('.btn-toggle-play')
+let play = document.querySelector('#btn-play');
 let audio = document.getElementById('audio')
 let player = document.querySelector('.player')
 let timeUpdate = document.getElementById('progresspcdt')

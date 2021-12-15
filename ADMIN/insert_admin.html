@@ -83,22 +83,22 @@
                         <div class="right__title">Dashboard</div>
                         <p class="right__desc">Insert admin</p>
                         <div class="right__formWrapper">
-                            <form action="" method="post">
+                            <form action="" method="post" id="formadmin">
                                 <div class="right__inputWrapper">
                                     <label for="name">Name admin</label>
-                                    <input type="text" placeholder="Name admin">
+                                    <input type="text" id="name" placeholder="Name admin">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="email">Email</label>
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" id="email" placeholder="Email">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="password">Password</label>
-                                    <input type="text" placeholder="Pass">
+                                    <input type="text" placeholder="Pass" id="pass">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="image">Image</label>
-                                    <input type="file">
+                                    <input type="file" id="imagefile">
                                 </div>
                                 <button class="btn" type="submit">ADD</button>
                             </form>
@@ -110,5 +110,54 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="API/index.js"></script>
+    <script>
+        var postApiAdmin= "http://localhost:8000/user";
+        let formAdmin = (document.getElementById('formadmin'));
+      
+        // function getImage(){
+        //     let input = (document.getElementById('imagefile').value);
+        //     urlImage   = input.split("\\").pop();
+        // }
+        formAdmin.addEventListener('submit', function (e) {
+            let input = (document.getElementById('imagefile').value).split("\\").pop();
+            let username = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let pass = document.getElementById('pass').value;
+            var getUrl = window.location;
+            var localhost = getUrl.protocol + "//" + getUrl.host + "/";
+            var datas = {
+                "name": username,
+                "email": email,
+                "password": pass,
+                "phone": null,
+                "avatar": localhost+ "WebsitePodcast/IMG/" + input,
+                "type": "admin",
+                "ranker": "vàng"
+            }
+            VALUE = JSON.stringify(datas);
+
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+  myHeaders.append('Access-Control-Allow-Origin', '*');
+  myHeaders.append('Access-Control-Allow-Credentials', 'true');
+
+  fetch(postApiAdmin, {
+    method: 'POST',
+    headers: myHeaders,
+    mode: 'no-cors',
+    body: VALUE
+  })
+    .then(data => {
+      console.log(data);
+      window.location.href = "view_admins.html";
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+    </script>
 </body>
 </html>
