@@ -2014,7 +2014,7 @@ input[type=file] {
   font-size: 17px;
   width: 100%;
   text-align: justify;
-  max-height: 50px;
+  max-height: auto;
   overflow: hidden;
   line-height: 1.5;
 }
@@ -2245,7 +2245,7 @@ input[type=file] {
 }
 
 .pod_content {
-  width: 1500px;
+  width: 600px;
   height: auto;
   color: #fff;
   margin: 0 auto;
