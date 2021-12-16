@@ -83,14 +83,22 @@
                         <div class="right__title">Dashboard</div>
                         <p class="right__desc">Insert category</p>
                         <div class="right__formWrapper">
-                            <form action="" method="post">
+                            <form action="" method="post" id="addformcategory">
                                 <div class="right__inputWrapper">
                                     <label for="title">Title</label>
-                                    <input type="text" placeholder="Title">
+                                    <input type="text" placeholder="Title" id="title-cate">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="desc">Description</label>
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="Something..."></textarea>
+                                    <textarea name="" id="textarea-cate" cols="30" rows="10" placeholder="Something..."></textarea>
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="p_category">Type</label>
+                                    <select name="" id="type-category">
+                                        <option disabled selected>Select type</option>
+                                        <option value="0">Blog</option>
+                                        <option value="1">PodCast</option>
+                                    </select>
                                 </div>
                                 <button class="btn" type="submit">ADD</button>
                             </form>
@@ -102,5 +110,47 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="API/index.js"></script>
+    <script>
+        var categoryApiAdmin= "http://localhost:8000/category";
+        let formCate = (document.getElementById('addformcategory'));
+      
+        // function getImage(){
+        //     let input = (document.getElementById('imagefile').value);
+        //     urlImage   = input.split("\\").pop();
+        // }
+        formCate.addEventListener('submit', function (e) {
+            let title = document.getElementById('title-cate').value;
+            let content = document.getElementById('textarea-cate').value;
+            let typecategory = document.getElementById('type-category').value;
+            var datas = {
+                "name": title,
+                "description": content,
+                "type_category": typecategory
+            }
+            VALUE = JSON.stringify(datas);
+
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+  myHeaders.append('Access-Control-Allow-Origin', '*');
+  myHeaders.append('Access-Control-Allow-Credentials', 'true');
+
+  fetch(categoryApiAdmin, {
+    method: 'POST',
+    headers: myHeaders,
+    mode: 'no-cors',
+    body: VALUE
+  })
+    .then(data => {
+      console.log(data);
+      //window.location.href = "view_admins.html";
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+    </script>
 </body>
 </html>
