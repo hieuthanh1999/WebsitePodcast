@@ -83,18 +83,18 @@
                         <div class="right__title">Dashboard</div>
                         <p class="right__desc">Insert course</p>
                         <div class="right__formWrapper">
-                            <form action="" method="post">
+                            <form action="" method="post" id="formcourse">
                                 <div class="right__inputWrapper">
                                     <label for="title">Image</label>
-                                    <input type="file">
+                                    <input type="file" id="imagecourse" name="image">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="title">Title</label>
-                                    <input type="text" placeholder="Title">
+                                    <input type="text" placeholder="Title" id="titlecourse">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="limit">Content</label>
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="Write something..."></textarea>
+                                    <textarea name="" id="textcourse" cols="30" rows="10" placeholder="Write something..."></textarea>
                                 </div>
                                 <button class="btn" type="submit">ADD</button>
                             </form>
@@ -106,5 +106,49 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="API/index.js"></script>
+    <script>
+        var courseApiAdmin= "http://localhost:8000/course";
+        let formAdminCourse = (document.getElementById('formcourse'));
+        formAdminCourse.addEventListener('submit', function (e) {
+      
+            let inputcourse = (document.getElementById('imagecourse').value).split("\\").pop();
+           
+            let titlecourse = document.getElementById('titlecourse').value;
+           
+            let textcourse = document.getElementById('textcourse').value;
+            var getUrl = window.location;
+            var localhost = getUrl.protocol + "//" + getUrl.host + "/";
+          
+            var datas = {
+                "name": titlecourse,
+                "totalUser": "0",
+                "image": localhost+ "WebsitePodcast/IMG/" + inputcourse,
+                "description": textcourse,
+            }
+            VALUE = JSON.stringify(datas);
+
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+  myHeaders.append('Access-Control-Allow-Origin', '*');
+  myHeaders.append('Access-Control-Allow-Credentials', 'true');
+
+  fetch(courseApiAdmin, {
+    method: 'POST',
+    headers: myHeaders,
+    mode: 'no-cors',
+    body: VALUE
+  })
+    .then(data => {
+      console.log(data);
+      //window.location.href = "view_admins.html";
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+    </script>
 </body>
 </html>
