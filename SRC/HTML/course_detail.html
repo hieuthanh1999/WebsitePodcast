@@ -131,48 +131,13 @@
     <div class="main_center">
       <div class="left_coursedt">
         <div class="left__avaAdmin">
-          <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
-          <span>Critical Thinking - Bộ kỹ năng Tư duy phản biện</span>
+          <img src="../../IMG/dangthuhuyen_blog.jpg" id="imagecourse" alt="">
+          <span  id="titlecourse">Critical Thinking - Bộ kỹ năng Tư duy phản biện </span>
         </div>
 
         <div class="left__listTitle">
-          <div class="left__listcourse">
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span>Bộ kỹ năng Tư duy phản biện</span>
-              </div>
-            </a>
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span> Bộ kỹ năng Tư duy phản biện</span>
-              </div>
-            </a>
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span> Bộ kỹ năng Tư duy phản biện </span>
-              </div>
-            </a>
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span> Bộ kỹ năng Tư duy phản biện</span>
-              </div>
-            </a>
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span> Bộ kỹ năng Tư duy phản biện</span>
-              </div>
-            </a>
-            <a href="" class="left__list">
-              <div class="left__itemTitleCourse">
-                <img src="../../IMG/course.png" alt="">
-                <span> Bộ kỹ năng Tư duy phản biện</span>
-              </div>
-            </a>
+          <div class="left__listcourse" id="listpodcastcourse">
+
           </div>
 
           <div style="border-bottom: 1px solid rgba(255,255,255, 0.3);">
@@ -316,29 +281,76 @@
 <script src="../JS/course_detail.js"></script>
 <script>
   let idcourse = sessionStorage.getItem('id-course');
-  console.log(idcourse);
   // get api ra podcast
-  var urlcoursedetails = 'http://localhost:8000/course';
-  fetch(urlcoursedetails + '/' + idcourse)
+  var urlpodcast = 'http://localhost:8000/podcast';
+  fetch(urlpodcast)
+    .then(response => response.json())
+    .then(function (responses) {
+      let i=1;
+      var podcast = responses.filter(function (person) { return person.id_course == idcourse});
+      var htmls = podcast.map(function (response) {
+          return `
+            <a id="id-${i++}" onclick="clickpodcast(${response.id})" class="left__list" style="display: inline">
+              <div class="left__itemTitleCourse">
+                <img src="${response.image}" alt="">
+                <span>${response.title}</span>
+              </div>
+            </a> `;
+      })
+      var html = htmls.join('');
+      document.getElementById('listpodcastcourse').innerHTML = html;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+    window.onload=function(){
+      document.getElementById("id-1").click();
+    };
+
+    var urlcoursedetails = 'http://localhost:8000/course';
+    fetch(urlcoursedetails + '/' + idcourse)
+      .then(response => response.json())
+      .then(function (responses) {
+        document.getElementById('imagecourse').setAttribute('src',responses.image);
+        document.getElementById('titlecourse').innerHTML = responses.name ;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    
+      var urlcoursedetails = 'http://localhost:8000/course';
+    fetch(urlcoursedetails + '/' + idcourse)
+      .then(response => response.json())
+      .then(function (responses) {
+        document.getElementById('imagecourse').setAttribute('src',responses.image);
+        document.getElementById('titlecourse').innerHTML = responses.name ;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
+  function clickpodcast(id){
+  fetch(urlpodcast + '/' + id)
     .then(response => response.json())
     .then(function (responses) {
       console.log(responses);
       var htmls = `
         <div>
           <div class="right__member">
-              <p>${responses.totalUser}</p><span>&nbsp;Người tham dự&nbsp;</span>
+              <p>233</p><span>&nbsp;Người tham dự&nbsp;</span>
           </div>
           <div class="right__bannerimg">
-              <img src="${responses.image}" alt="">
+              <img src="../..//IMG/course.png" alt="">
           </div>
           <div class="right__maincontent">
               <div class="bannercourse">
                 <div class="course_img">
-                  <img src="../../IMG/dangthuhuyen_blog.jpg" alt="">
+                  <img src="${responses.image}" alt="">
                 </div>
                 <div class="course_info">
                   <p>Đặng Thu Huyền's Podcast</p>
-                  <span>${responses.name}</span>
+                  <span>${responses.title}</span>
                   <div class="iconSpotify">
                     <i class="fab fa-spotify" title="Spotify"></i>
                   </div>
@@ -373,7 +385,7 @@
                       <i class="las la-download"></i>
                     </div>
                   </div>
-                  <audio id="audio" src="../../AUDIO/ThangNam.mp3"></audio>
+                  <audio id="audio" src="${responses.audio}"></audio>
                 </div>
               </div>
 
@@ -384,7 +396,7 @@
                 </div>
                 <div class="pod_des">
                   <p>
-                    ${responses.description}
+                    ${responses.content}
                   </p>
                 </div>
               </div>
@@ -395,6 +407,9 @@
     .catch((error) => {
       console.error('Error:', error);
     });
+  }
 
+
+  
 </script>
 </html>

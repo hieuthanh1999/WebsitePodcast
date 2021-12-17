@@ -84,46 +84,33 @@
                         <div class="right__title">Dashboard</div>
                         <p class="right__desc">Edit post</p>
                         <div class="right__formWrapper">
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="" method="PUT" enctype="multipart/form-data" id="updateform">
                                 <div class="right__inputWrapper">
                                     <label for="title">Title</label>
-                                    <input type="text" placeholder="Tiêu đề">
+                                    <input type="text" id="title" placeholder="Tiêu đề">
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="image">Image</label>
-                                    <input type="file">
-                                </div>
-                                <div class="right__inputWrapper">
-                                    <label for="image">Audio</label>
-                                    <input type="file">
+                                    <input type="file" id="fileblog" onclick="changefle()">
+                                    <img style="width: 150px; height: 150px; margin: 10px 0 0 0" src="" id="imageblog"/>
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="p_category">Category</label>
-                                    <select name="">
-                                        <option disabled selected>Select category</option>
-                                        <option value="">Dress</option>
-                                        <option value="">Top + Skert</option>
-                                    </select>
-                                </div>
-                                <div class="right__inputWrapper">
-                                    <label for="label">Course</label>
-                                    <select name="">
-                                        <option disabled selected>Select course</option>
-                                        <option value="new">Mới</option>
-                                        <option value="sale">Giảm giá</option>
+                                    <select name="" id="postcategory">
+                                     
                                     </select>
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="p_category">Rank</label>
-                                    <select name="">
-                                        <option disabled selected>Select rank</option>
-                                        <option value="">Dress</option>
-                                        <option value="">Top + Skert</option>
+                                    <select name="" id="rankblog">
+                                        <option value="">Select rank</option>
+                                        <option value="1">vàng</option>
+                                        <option value="2">kim cương</option>
                                     </select>
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="desc">Content</label>
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="Write something..."></textarea>
+                                    <textarea name="" id="descriptonblog" cols="30" rows="10" placeholder="Write something..."></textarea>
                                 </div>
                                 <button class="btn" type="submit">UPDATE</button>
                             </form>
@@ -135,7 +122,139 @@
     </div>
 
     <script src="js/main.js"></script>
+    <script src="API/index.js"></script>
+    <!-- <script>
+        const form = document.getElementById('updateform')
+        var postApiBlog= "http://localhost:8000/post";
+        var postApiPod= "http://localhost:8000/podcast";
+            form.addEventListener('submit', function (e) {
+            let input = (document.getElementById('fileimage').value).split("\\").pop();;
+           
+            let title = document.getElementById('title').value;
+            let content = document.getElementById('content').value;
+            let postcategory = document.getElementById('postcategory').value;
+            let ranker = document.getElementById('ranker').value;
+            var getUrl = window.location;
+            var localhost = getUrl.protocol + "//" + getUrl.host + "/";
+            let id = sessionStorage.getItem('idadmin');
+            let name = sessionStorage.getItem('nameadmin');
+            var datas =  {
+                "id_user": id,
+                "id_category": postcategory,
+                "user": name,
+                "title": title,
+                "image": localhost+ "WebsitePodcast/IMG/" + input,
+                "content": content,
+                "numview": null,
+                "numcomment": null,
+                "numlove":null,
+                "islove": null,
+                "isgroup": null,
+                "idgroup": null,
+                "ranker": ranker
+    };
 
-    
+            VALUE = JSON.stringify(datas);
+
+  const myHeaders = new Headers();
+  myHeaders.append('Content-Type', 'application/json');
+  myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+  myHeaders.append('Access-Control-Allow-Origin', '*');
+  myHeaders.append('Access-Control-Allow-Credentials', 'true');
+    fetch(postApiBlog, {
+    method: 'POST',
+    headers: myHeaders,
+    mode: 'no-cors',
+    body: VALUE
+  })
+    .then(data => {
+      console.log(data);
+    //   window.location.href = "view_admins.html";
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+});
+</script> -->
+<script>
+     let idblog = sessionStorage.getItem('id-blog');
+    console.log(idblog);
+  const formpost = document.getElementById('updateform')
+        var postApiBlog= "http://localhost:8000/post";
+        formpost.addEventListener('submit', function (e) {
+            let input = (document.getElementById('imageblog').getAttribute('src'));
+            let title = document.getElementById('title').value;
+            let content = document.getElementById('descriptonblog').value;
+            let postcategory = document.getElementById('postcategory').value;
+            let id = sessionStorage.getItem('idadmin');
+            let name = sessionStorage.getItem('useradmin');
+          
+        });
+
+   
+    // get api ra podcast
+    var urlpostdetails = 'http://localhost:8000/post';
+    fetch(urlpostdetails + '/' + idblog)
+      .then(response => response.json())
+      .then(function (responses) {
+        document.getElementById('rankblog').value = responses.ranker;
+        document.querySelector('#postcategory').value = responses.id_category;
+        document.getElementById('descriptonblog').value = responses.content;
+        document.getElementById('title').value = responses.title;
+        document.getElementById('imageblog').setAttribute('src', responses.image);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      
+    //   function changefle(){
+    //     let l = document.getElementById('fileblog').value;
+    //       setTimeout(() => {
+    //         alert(l);
+    //       }, 600);
+       
+         
+    //     //document.querySelector('#imageblog').setAttribute('src', );
+    //   }
+  
+
+
+ 
+  var datas =  {
+                "id_user": "96",
+                    "id_category": "7",
+                    "user": "đặng huyền",
+                    "title": "AGILE  ",
+                    "image": "http://localhost/WebsitePodcast/IMG/course.png",
+                    "content": "Nếu hỏi cách làm việc agile - linh hoạt có cần thiết không thì cũng giống như đi hỏi tại sao thế giới lại sinh ra công nghệ blockchain và mô hình DeFi (decentralized finance - tài chính phi tập trung). Đơn giản vì mấy thứ tập trung nó có thời của nó, hồi ",
+                    "numview": "0",
+                    "numcomment": "0",
+                    "numlove": "0",
+                    "islove": "0",
+                    "isgroup": "0",
+                    "idgroup": "0",
+                    "ranker": "1",
+                    };
+            VALUE = JSON.stringify(datas);
+            var urlpostdetails = 'http://localhost:8000/post/1';
+            fetch(urlpostdetails, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', 
+                'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Access-Control-Allow-Origin':'*',
+                'Access-Control-Allow-Credentials':'true'
+            },
+            body: VALUE
+        }).then(response => response.json()).then(data => {
+            console.log(data);
+                alert("đasad");
+            })
+            .catch((err) => {
+            console.error(err);
+            });
+  
+  </script>
 </body>
 </html>

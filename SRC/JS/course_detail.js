@@ -145,11 +145,12 @@ let podcastApp = {
   //Xử lý sự kiện
   handleEvents: function () {
     let _this = this
-    play.onclick = function () {
-      _this.setConfig('isPlaying', isPlaying)
-      isPlaying ? audio.pause() : audio.play()
-    }
-    //Sự kiện thay đổi icon khi phát audio
+    window.onload = function(){ 
+      play.onclick = function () {
+        _this.setConfig('isPlaying', isPlaying)
+        isPlaying ? audio.pause() : audio.play()
+      }
+          //Sự kiện thay đổi icon khi phát audio
     audio.onplay = function () {
       isPlaying = true
       player.classList.add('playing')
@@ -218,6 +219,9 @@ let podcastApp = {
       repeat.classList.toggle('active', isRepeat)
       _this.setConfig('isRepeat', isRepeat)
     }
+
+};
+
 
 
   },

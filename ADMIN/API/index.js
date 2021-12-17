@@ -180,6 +180,10 @@ function getListCategoryPodCast(responses) {
       document.getElementById('list-category-podcast').innerHTML = html;
     }
 }
+function update_category(id){
+  sessionStorage.setItem('id-category', id);
+  window.location.href = "edit_category.html";
+}
 //GET List Blog
 function getListBlog(responses) {
   var j =1;
@@ -204,6 +208,10 @@ function getListBlog(responses) {
       });
       var html = htmls.join('');
       document.getElementById('list-blog').innerHTML = html;
+}
+function update_blog(id){
+  sessionStorage.setItem('id-blog', id);
+  window.location.href = "edit_post.html";
 }
 //GET List PodCast
 function getListPodCast(responses) {

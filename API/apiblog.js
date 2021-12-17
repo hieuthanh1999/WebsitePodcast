@@ -1,4 +1,4 @@
-// get api ra podcast
+// get api ra blog
 var url_blog = 'http://localhost:8000/post';
 fetch(url_blog)
     .then(response => response.json())
