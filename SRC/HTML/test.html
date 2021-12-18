@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập</title>
+</head>
+
+<body>
+<script>
+    var url_user = 'http://localhost:8000/user'  + '/' + 63;
+    var options = {
+        method: 'DELETE',
+        headers: {"Access-Control-Allow-Origin": "*"},
+        body: null
+    };
+    fetch(url_user, options)
+    .then(data => {
+        console.log("done");
+        // var dele = document.querySelector('.data-id-' + id);
+        // if(dele){
+        //     dele.remove()
+        // }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+</script>
+</html>
