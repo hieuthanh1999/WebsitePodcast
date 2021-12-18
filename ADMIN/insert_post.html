@@ -98,11 +98,6 @@
                                             <input type="file" id="fileimage">
                                         </div>
                                         <div class="right__inputWrapper">
-                                            <label for="image">Audio</label>
-                                            <input type="file" id="fileaudio">
-                                        </div>
-
-                                        <div class="right__inputWrapper">
                                             <label for="desc">Content</label>
                                             <textarea name="" id="content" cols="30" rows="15"
                                                 placeholder="Write something..."></textarea>
@@ -153,13 +148,20 @@
             let input = (document.getElementById('fileimage').value).split("\\").pop();;
            
             let title = document.getElementById('title').value;
+
             let content = document.getElementById('content').value;
+  
             let postcategory = document.getElementById('postcategory').value;
+      
             let ranker = document.getElementById('ranker').value;
+      
             var getUrl = window.location;
             var localhost = getUrl.protocol + "//" + getUrl.host + "/";
             let id = sessionStorage.getItem('idadmin');
-            let name = sessionStorage.getItem('nameadmin');
+
+            let name = sessionStorage.getItem('useradmin');
+            alert(name);
+
             var datas =  {
                 "id_user": id,
                 "id_category": postcategory,
@@ -167,16 +169,17 @@
                 "title": title,
                 "image": localhost+ "WebsitePodcast/IMG/" + input,
                 "content": content,
-                "numview": null,
-                "numcomment": null,
-                "numlove":null,
-                "islove": null,
-                "isgroup": null,
-                "idgroup": null,
+                "numview": "0",
+                "numcomment": "0",
+                "numlove":"0",
+                "islove": "0",
+                "isgroup": "0",
+                "idgroup": "0",
                 "ranker": ranker
     };
-
+  
             VALUE = JSON.stringify(datas);
+            alert(VALUE);
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
