@@ -1,4 +1,5 @@
 var postApi = "http://localhost:8000/user";
+
 form.addEventListener('submit', function (e) {
   let username = document.getElementById('username').value;
   let email = document.getElementById('email').value;

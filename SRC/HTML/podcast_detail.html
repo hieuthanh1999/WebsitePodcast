@@ -578,82 +578,10 @@
 <script src="../JS/podcast_detail.js"></script>
 <script src="../../API/url_home.js"></script>
 <script src="../../API/posts.js"></script>
+<script src="../../API/podcast.js"></script>
+<script src="../../API/category.js"></script>
 <script>
-  let idpostcast = sessionStorage.getItem('id-podcast');
-  console.log(idpostcast);
-  // get api ra podcast
-  var url_blog = 'http://localhost:8000/podcast';
-  fetch(url_blog + '/' + idpostcast)
-    .then(response => response.json())
-    .then(function (responses) {
-      console.log(responses);
-      var htmls = `
-      <!-- Banner -->
-      <div class="bannerpcdt">
-        <div class="banner__podcast">
-          <div class="podcast_img">
-            <img src="${responses.image}" alt=""">
-          </div>
-          <div class="podcast_info">
-            <p>Đặng Thu Huyền's Podcast</p>
-            <span>${responses.title}</span>
-            <div class="iconSpotify">
-              <i class="fab fa-spotify" title="Spotify"></i>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Phần hiển thị xử lý audio  -->
-      <div class="podcast_audio">
-        <div class="player">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="left">0.00</div>
-            <input id="progresspcdt" class="progresspcdt" type="range" value="0" step="1" min="0" max="100">
-            <div class="right">0.00</div>
-          </div>
-          <div class="control">
-            <div class="btn btn-repeat">
-              <i class="las la-sync-alt" title="Repeat"></i>
-            </div>
-            <div class="btn btn-prev">
-              <i class="las la-undo-alt" title="Prev 10s"></i>
-              <span>10</span>
-            </div>
-            <div id="btn-play" class="btn btn-toggle-play">
-              <i class="fas fa-pause icon-pause"></i>
-              <i class="fas fa-play icon-play"></i>
-            </div>
-            <div class="btn btn-next">
-              <i class="las la-redo-alt" title="Skip 10s"></i>
-              <span>10</span>
-            </div>
-            <div class="btn btn-download">
-              <i class="las la-download"></i>
-            </div>
-          </div>
-          <audio id="audio" src="${responses.audio}"></audio>
-        </div>
-      </div>
-
-      <!-- Nội dung mô tả podcast -->
-      <div class="pod_content" id="podContent">
-        <div class="pod_curentime">
-          <span>Đặng Thu Huyền</span>&nbsp; | &nbsp;<span class="realdate">${responses.reg_date}</span>
-        </div>
-        <div class="pod_des">
-          <p>
-            ${responses.content}
-          </p>
-        </div>
-      </div>
-
-      `;
-      document.getElementById('podcast-details').innerHTML = htmls;
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
 
 </script>
 </html>

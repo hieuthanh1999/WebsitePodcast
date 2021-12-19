@@ -37,3 +37,4 @@ logout.onclick = function(){
   sessionStorage.removeItem('user');
   sessionStorage.removeItem('avatar');
 }
+

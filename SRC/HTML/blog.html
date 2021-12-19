@@ -197,7 +197,7 @@
         <!-- Tab content -->
         <div class="tab-content">
           <div class="tab-pane active">
-            <div class="blog__item" id="blog">
+            <div class="blog__item" id="blog-list-item">
 
             </div>
           </div>
@@ -405,73 +405,9 @@
 <script src="../JS/blog.js"></script>
 <script src="../../API/url_home.js"></script>
 <script src="../../API/posts.js"></script>
+<script src="../../API/category.js"></script>
 <!-- <script src="../API/apiblog.js"></script> -->
 <script>
-  // get api ra podcast
-var url_blog = 'http://localhost:8000/post';
-fetch(url_blog)
-    .then(response => response.json())
-    .then(function (responses) {
-       console.log(responses);
-       var htmls = responses.map(function (response) {
-            return  `
-            <div class="item__post">
-            <a class="item__img" onclick="course_click(${response.id})">
-              <img
-                src="${response.image}"
-                alt="">
-            </a>
-            <div style="display: flex;">
-              <div class="item__info">
-                <div class="info__avablog">
-                  <img src="../../IMG/logo_vn.png" alt="">
-                </div>
-                <div class="info__text">
-                  <h5>${response.user}</h5>
-                  <p class="realtimebl">4 giờ trước</p>
-                </div>
-                <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
-                  <i class="fas fa-crown" title="Quản trị viên"></i>
-                </div>
-              </div>
-              <div class="dots">
-                <i class="fas fa-ellipsis-v"></i>
-                <span class="share" id="share">
-                  <i class="fas fa-share"></i>
-                  Chia sẻ bài đăng
-                </span>
-              </div>
-            </div>
-            <div class="item__title">
-              <a href="blog_detail.html" style="color: black; text-decoration: none;">
-                <h3 onclick="course_click(${response.id})">${response.title}</h3>
-                <p>
-                ${response.content}
-                </p>
-              </a>
-            </div>
-            <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
-            <div class="item__icon">
-              <div>
-                <i class="far fa-eye">${response.numview}</i>
-                <i class="far fa-comment-alt" style="margin-left: 10px;"> 10</i>
-              </div>
-              <i class="far fa-heart"> ${response.numlove}</i>
-            </div>
-          </div>
-            `;
-       });
-       var html = htmls.join('');
-       document.getElementById('blog').innerHTML = html;
 
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-
-    function course_click(id){
-      sessionStorage.setItem('id-blog', id);
-      window.location.href = "blog_detail.html";
-    }
 </script>
 </html>

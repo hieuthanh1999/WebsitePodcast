@@ -27,7 +27,6 @@ logoutadmin.onclick = function(){
   window.location = baseUrl + "/SRC/HTML/login.html";
   // alert(window.location.url);
 }
-getListBlog
 var url_user = 'http://localhost:8000/user';
 var url_course = 'http://localhost:8000/course';
 var url_category = 'http://localhost:8000/category';
@@ -40,9 +39,10 @@ function start() {
   getApiAdmin(url_course ,getListCourse);
   getApiAdmin(url_category ,getListCategory);
   getApiAdmin(url_category ,getListCategoryPodCast);
-  getApiAdmin(url_blog ,getListBlog);getListBlog
-  getApiAdmin(url_podcast ,getListPodCast);getCoursePost
+  // getApiAdmin(url_blog ,getListBlog);
+  // getApiAdmin(url_podcast ,getListPodCast);
   getApiAdmin(url_category ,getCategoryPost);
+  getApiAdmin(url_category ,getCategoryPostInsert);
   getApiAdmin(url_course ,getCoursePost);
 }
 start();
@@ -185,73 +185,98 @@ function update_category(id){
   window.location.href = "edit_category.html";
 }
 //GET List Blog
-function getListBlog(responses) {
-  var j =1;
-  console.log(responses);
-    var htmls = responses.map(function (response) {
-      return  `
-      <tr>
-      <td data-label="STT">${j++}</td>
-      <td data-label="Title">${response.title}</td>
-      <td data-label="Image"><img src="${response.image}" alt=""></td>
-      <td data-label="Category">${response.id_category}</td>
-      <td data-label="Rank">${response.ranker}</td>
-      <td data-label="Content" id="limit">
-      ${response.content}
-      </td>
-      <td data-label="Sửa" class="right__iconTable"><a ><img onclick="update_blog(${response.id})"
-                  src="assets/icon-edit.svg" alt=""></a></td>
-      <td data-label="Xoá" class="right__iconTable"><a ><img onclick="delete_blog(${response.id})"
-                  src="assets/icon-trash-black.svg" alt=""></a></td>
-  </tr>
-        `;
-      });
-      var html = htmls.join('');
-      document.getElementById('list-blog').innerHTML = html;
-}
+// function getListBlog(responses) {
+//   var j =1;
+//   console.log(responses);
+//     var htmls = responses.map(function (response) {
+//       return  `
+//       <tr>
+//       <td data-label="STT">${j++}</td>
+//       <td data-label="Title">${response.title}</td>
+//       <td data-label="Image"><img src="${response.image}" alt=""></td>
+//       <td data-label="Category">${response.id_category}</td>
+//       <td data-label="Rank">${response.ranker}</td>
+//       <td data-label="Content" id="limit">
+//       ${response.content}
+//       </td>
+//       <td data-label="Sửa" class="right__iconTable"><a ><img onclick="update_blog(${response.id})"
+//                   src="assets/icon-edit.svg" alt=""></a></td>
+//       <td data-label="Xoá" class="right__iconTable"><a ><img onclick="delete_blog(${response.id})"
+//                   src="assets/icon-trash-black.svg" alt=""></a></td>
+//   </tr>
+//         `;
+//       });
+//       var html = htmls.join('');
+//       document.getElementById('list-blog').innerHTML = html;
+// }
+//Click Update Blog
 function update_blog(id){
   sessionStorage.setItem('id-blog', id);
   window.location.href = "edit_post.html";
 }
 //GET List PodCast
-function getListPodCast(responses) {
-  var j =1;
-  console.log(responses);
-    var htmls = responses.map(function (response) {
-      return  `
-      <tr>
-          <td data-label="STT">${j++}</td>
-          <td data-label="Title">${response.title}</td>
-          <td data-label="Image"><img src="${response.image}" alt=""></td>
-          <td data-label="Audio">
-          <audio controls>
-            <source src="${response.audio}">
-          </audio></td>
-          <td data-label="Category">${response.id_category}</td>
-          <td data-label="Course">${response.id_course}</td>
-          <td data-label="Content" id="limit">
-          ${response.content}
-          </td>
-          <td data-label="Sửa" class="right__iconTable"><a><img onclick="update_podcast(${response.id})"
-                      src="assets/icon-edit.svg" alt=""></a></td>
-          <td data-label="Xoá" class="right__iconTable"><a  ><img onclick="delete_podcast(${response.id})"
-                      src="assets/icon-trash-black.svg" alt=""></a></td>
-      </tr>
-        `;
-      });
-      var html = htmls.join('');
-      document.getElementById('list-pod-cast').innerHTML = html;
-}
+// function getListPodCast(responses) {
+//   var j =1;
+//   console.log(responses);
+//     var htmls = responses.map(function (response) {
+//       return  `
+//       <tr>
+//           <td data-label="STT">${j++}</td>
+//           <td data-label="Title">${response.title}</td>
+//           <td data-label="Image"><img src="${response.image}" alt=""></td>
+//           <td data-label="Audio">
+//           <audio controls>
+//             <source src="${response.audio}">
+//           </audio></td>
+//           <td data-label="Category">${response.id_category}</td>
+//           <td data-label="Course">${response.id_course}</td>
+//           <td data-label="Content" id="limit">
+//           ${response.content}
+//           </td>
+//           <td data-label="Sửa" class="right__iconTable"><a><img onclick="update_podcast(${response.id})"
+//                       src="assets/icon-edit.svg" alt=""></a></td>
+//           <td data-label="Xoá" class="right__iconTable"><a  ><img onclick="delete_podcast(${response.id})"
+//                       src="assets/icon-trash-black.svg" alt=""></a></td>
+//       </tr>
+//         `;
+//       });
+//       var html = htmls.join('');
+//       document.getElementById('list-pod-cast').innerHTML = html;
+// }
 
 //GET List PodCast
 function getCategoryPost(responses) {
-    var htmls = responses.map(function (response) {
-      return  `
-          <option value="${response.id}">${response.name}</option>
-        `;
-      });
-      var html = htmls.join('');
-      document.getElementById('postcategory').innerHTML = html;
+  var htmls = responses.map(function (response) {
+    return  `
+        <option value="${response.id}">${response.name}</option>
+      `;
+    });
+    var html = htmls.join('');
+    document.getElementById('postcategory').innerHTML = html;
+}
+
+//GET Category in insert Blog
+function getCategoryPostInsert(responses) {
+  var blog = responses.filter(function (person) { return person.type_category == "0"});
+  var htmls = blog.map(function (response) {
+    return  `
+        <option value="${response.id}">${response.name}</option>
+      `;
+    });
+    var html = htmls.join('');
+    document.getElementById('postcategoryinsert').innerHTML = html;
+}
+
+//GET Category in insert Podcast
+function getCategoryPostInsert(responses) {
+  var podcast = responses.filter(function (person) { return person.type_category == "1"});
+  var htmls = podcast.map(function (response) {
+    return  `
+        <option value="${response.id}">${response.name}</option>
+      `;
+    });
+    var html = htmls.join('');
+    document.getElementById('podcasttcategoryinsert').innerHTML = html;
 }
 function getCoursePost(responses) {
   var htmls = responses.map(function (response) {
@@ -262,6 +287,8 @@ function getCoursePost(responses) {
     var html = htmls.join('');
     document.getElementById('courses_name').innerHTML = html;
 }
+
+//test delete user
 // function deleteUser(id){
 //     var url_user = 'http://localhost:8000/user'  + '/' + id;
 //     var options = {

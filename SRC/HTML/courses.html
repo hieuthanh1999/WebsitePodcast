@@ -203,47 +203,9 @@
 <script src="../../API/url_home.js"></script>
 <script src="../JS/course.js"></script>
 <script src="../../API/posts.js"></script>
+<script src="../../API/category.js"></script>
+<script src="../../API/course.js"></script>
 <script>
-  // get api ra podcast
-var url_course = 'http://localhost:8000/course';
-fetch(url_course)
-    .then(response => response.json())
-    .then(function (responses) {
-       console.log(responses);
-       var htmls = responses.map(function (response) {
-            return  `
-            <div class="item__course">
-          <a class="course__img" href="" onclick="course_click( ${response.id})">
-            <img src="${response.image}" alt="">
-          </a>
-          <div>
-            <div class="course__title">
-              <a href="course_detail.html">
-                <h3>${response.name}</h3>
-                <p>
-                  ${response.totalUser} Người tham dự
-                </p>
-              </a>
-            </div>
-            <div class="line"></div>
-            <div class="course_member">
-              course Member
-            </div>
-            <div class="course__btn">
-              <button onclick="course_click( ${response.id})">Tham gia</button>
-            </div>
-          </div>
-        </div>
-            `;
-       });
-       var html = htmls.join('');
-       document.getElementById('list-course').innerHTML = html;
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-
-    
-
+ 
 </script>
 </html>
