@@ -282,6 +282,25 @@
 <script src="../../API/category.js"></script>
 <script src="../../API/course.js"></script>
 <script>
- 
+
+    function pla() {
+      
+    var x = document.getElementById("myAudio"); 
+    var pau = document.getElementById("pau");
+    var pay = document.getElementById("pay");
+          x.play();
+          pay.style.display = "none";
+          pau.style.display = "block";
+        }
+    function pau() {
+      
+    var x = document.getElementById("myAudio"); 
+    var pau = document.getElementById("pau");
+    var pay = document.getElementById("pay");
+      x.pause();
+      pay.style.display = "block";
+      pau.style.display = "none";
+    }
+
 </script>
 </html>

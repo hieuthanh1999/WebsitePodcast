@@ -133,7 +133,7 @@ let podcastApp = {
   },
   audioPodcast: [
     {
-      audioUrl: '../../AUDIO/ThangNam.mp3'
+      audioUrl: 'http://localhost/WebsitePodcast/AUDIO/ThangNam.mp3'
     }
   ],
 

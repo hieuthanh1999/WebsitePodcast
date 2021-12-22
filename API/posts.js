@@ -22,10 +22,13 @@ function getApi(url,callback) {
 }
 //Get Blog in home page
 function renderLayoutBlog(responses){
+  console.log(responses);
+  let userranker = sessionStorage.getItem('ranker');
+console.log("rank user" + userranker);
   var htmls = responses.map(function (response) {
     return  `
-    <div class="itemhome__post">
-    <div class="item__img" onclick="blog_click(${response.id})">
+    <div class="itemhome__post" id="post-item">
+    <div class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">
       <img src="${response.image}" alt="">
     </div>
     <div class="item__info">
@@ -41,7 +44,7 @@ function renderLayoutBlog(responses){
       </div>
     </div>
     <div class="item__title" >
-      <h3 onclick="blog_click(${response.id})">${response.title}</h3>
+      <h3 onclick="blog_click(${response.id}, ${response.ranker})">${response.title}</h3>
     </div>
     <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
     <div class="item__icon">
@@ -56,9 +59,15 @@ function renderLayoutBlog(responses){
 }
 
 //click vào details
-function blog_click(id){
-  sessionStorage.setItem('id-blog', id);
-  window.location.href = "blog_detail.html";
+function blog_click(id, ranker, rankuser){
+  if(rankuser >= ranker ){
+    sessionStorage.setItem('id-blog', id);
+    sessionStorage.setItem('rank-post', ranker);
+    window.location.href = "blog_detail.html";
+  }
+  else{
+    alert('bạn chưa đủ rank để xem')
+  }
 }
 
 //Blog Details
@@ -203,8 +212,4 @@ function renderLayoutBlogList(responses){
 var html = htmls.join('');
 document.getElementById('blog-list-item').innerHTML = html;
 
-}
-function blog_click(id){
-  sessionStorage.setItem('id-blog', id);
-  window.location.href = "blog_detail.html";
 }

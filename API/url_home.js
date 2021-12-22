@@ -5,6 +5,7 @@ var url_podcast = 'http://localhost:8000/podcast';
 //Xử lý session user
 let name = sessionStorage.getItem('user');
 let avatar = sessionStorage.getItem('avatar');
+let ranker = sessionStorage.getItem('ranker');
 if(name){
   function course_click(id){
   sessionStorage.setItem('id-course', id);
@@ -36,5 +37,6 @@ logout.onclick = function(){
   console.log(avatar);
   sessionStorage.removeItem('user');
   sessionStorage.removeItem('avatar');
+  sessionStorage.removeItem('ranker');
 }
 

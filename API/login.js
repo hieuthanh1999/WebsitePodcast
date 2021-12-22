@@ -3,7 +3,7 @@ function submitInfor() {
     let email = document.getElementById('email').value;
     var url = 'http://localhost:8000/user';
       fetch(url)
-      .then(response => response.json())
+      .then(response => response)
       .then(data => {
         console.log(data);
         data.forEach(element => {
@@ -18,6 +18,7 @@ function submitInfor() {
               console.log('Success: home');
               sessionStorage.setItem('user',element.name);
               sessionStorage.setItem('avatar',element.avatar);
+              sessionStorage.setItem('ranker',element.ranker);
               window.location.href = "homepage.html";
             }
             // console.log(element.name);

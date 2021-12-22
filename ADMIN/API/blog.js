@@ -1,9 +1,11 @@
 let url_viewblog = 'http://localhost:8000/post';
 let url_viewcategory = 'http://localhost:8000/category';
+let url_viewrank = 'http://localhost:8000/rank';
 fetchText();
 async function fetchText() {
     let blog = await fetch(url_viewblog);
     let category = await fetch(url_viewcategory);
+    let rank = await fetch(url_viewrank);
 
     // console.log(blog.status); // 200
     // console.log(blog.statusText); // OK
@@ -11,6 +13,7 @@ async function fetchText() {
     if (blog.status === 200) {
         let blogs = await blog.json();
         let categorys = await category.json();
+        let ranker = await rank.json();
         var categorypodcast = categorys.filter(function(category) {
             return category.type_category == "0";
         });
@@ -31,15 +34,31 @@ async function fetchText() {
              });     
         });
      }
+     function getRankByIds(userId){
+        return new Promise(resolve => {
+             var results = ranker.filter(function (user) {
+               return userId.includes(user.id);
+             });
+             setTimeout(function(){
+                 resolve(results);
+             });     
+        });
+     }
      getBlog().then(function(blogs){
             var categoryId = blogs.map(function (blog) {
                 return blog.id_category;
             });
+            var rankId = blogs.map(function (blog) {
+                return blog.ranker;
+            });
             return getCategoryByIds(categoryId).then(function (categorys) {
-                return {
-                    category : categorys,
-                    blog : blogs,
-                };
+                return getRankByIds(rankId).then(function (ranks) {
+                    return {
+                        category : categorys,
+                        blog : blogs,
+                        rank : ranks
+                    };
+                });
             });
         }).then(function(data){
            var html = '';
@@ -48,13 +67,16 @@ async function fetchText() {
                 var category = data.category.find(function (category){
                     return category.id === blog.id_category;
                 });
+                var rank = data.rank.find(function (rank){
+                    return rank.id === blog.ranker;
+                });
                 html += `
                 <tr>
                 <td data-label="STT">${j++}</td>
                 <td data-label="Title">${blog.title}</td>
                 <td data-label="Image"><img src="${blog.image}" alt=""></td>
                 <td data-label="Category">${category.name}</td>
-                <td data-label="Rank">${blog.ranker}</td>
+                <td data-label="Rank">${rank.name}</td>
                 <td data-label="Content" id="limit">
                 ${blog.content}
                 </td>

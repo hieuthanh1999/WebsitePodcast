@@ -1,5 +1,6 @@
 let url_comment = 'http://localhost:8000/comment';
 let url_user = 'http://localhost:8000/user';
+let idcmtblog = sessionStorage.getItem('id-blog');
 
 getApi(url_comment);
  fetchText();
@@ -11,11 +12,15 @@ async function fetchText() {
     // console.log(response.statusText); // OK
 
     if (response.status === 200) {
-        let comments = await response.json();
+        let commentsx = await response.json();
         let apiuser = await response2.json();
         var users = apiuser.filter(function(user) {
             return user.type == "user";
         });
+        var comments = commentsx.filter(function(comment) {
+          return comment.id_blog == idcmtblog;
+      });
+      console.log(comments);
     function getComment(){
         return new Promise(resolve => {
             setTimeout(function(){
@@ -46,6 +51,7 @@ async function fetchText() {
         }).then(function(data){
            var list = document.getElementById('commentblog');
            var html = '';
+           console.log(data);
             data.comments.map(function (comment){
                 var user = data.user.find(function (user){
                     return user.id === comment.id_user;
@@ -137,7 +143,6 @@ async function fetchText() {
                  </div>
                </div>
                 `;
-                console.log(html);
                 list.innerHTML = html;
             })
         })

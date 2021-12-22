@@ -31,6 +31,7 @@ var url_user = 'http://localhost:8000/user';
 var url_course = 'http://localhost:8000/course';
 var url_category = 'http://localhost:8000/category';
 var url_blog = 'http://localhost:8000/post';
+var url_rank = 'http://localhost:8000/rank';
 var url_podcast = 'http://localhost:8000/podcast';
 //ham main 
 function start() {
@@ -43,6 +44,9 @@ function start() {
   // getApiAdmin(url_podcast ,getListPodCast);
   getApiAdmin(url_category ,getCategoryPost);
   getApiAdmin(url_category ,getCategoryPostInsert);
+  getApiAdmin(url_category ,getCategoryPodCastInsert);
+  getApiAdmin(url_rank ,getListRankBlog);
+  getApiAdmin(url_rank ,getListRankPodCast);
   getApiAdmin(url_course ,getCoursePost);
 }
 start();
@@ -81,6 +85,26 @@ var user = responses.filter(function (person) { return person.type == 'user';});
   var htmls = html.join('');
   document.getElementById('listuser').innerHTML = htmls;
   }
+}
+//GET USER
+function getListRankPodCast(responses) {
+      var html = responses.map(function (response) {
+            return  `
+            <option value="${response.id}">${response.name}</option>
+          `;
+    });
+    var htmls = html.join('');
+    document.getElementById('ranker2').innerHTML = htmls;
+  }
+  //GET USER
+function getListRankBlog(responses) {
+  var html = responses.map(function (response) {
+        return  `
+        <option value="${response.id}">${response.name}</option>
+      `;
+});
+var htmls = html.join('');
+document.getElementById('ranker').innerHTML = htmls;
 }
 //GET List Admin
 function getListAdmin(responses) {
@@ -256,8 +280,9 @@ function getCategoryPost(responses) {
 }
 
 //GET Category in insert Blog
-function getCategoryPostInsert(responses) {
+function getCategoryPodCastInsert(responses) {
   var blog = responses.filter(function (person) { return person.type_category == "0"});
+  console.log(blog);
   var htmls = blog.map(function (response) {
     return  `
         <option value="${response.id}">${response.name}</option>
@@ -288,24 +313,17 @@ function getCoursePost(responses) {
     document.getElementById('courses_name').innerHTML = html;
 }
 
-//test delete user
-// function deleteUser(id){
-//     var url_user = 'http://localhost:8000/user'  + '/' + id;
-//     var options = {
-//         method: 'DELETE',
-//         mode: 'no-cors', // It can be no-cors, cors, same-origin
-//         credentials: 'same-origin', // It can be include, same-origin, omit
-//         headers: {"Access-Control-Allow-Origin": "*"}, // Allo
-//         body: null
-//     };
-//     fetch(url_user, options)
-//     .then(data => {
-//         var dele = document.querySelector('.data-id-' + id);
-//         if(dele){
-//             dele.remove()
-//         }
-//     })
-//     .catch((error) => {
-//       console.error('Error:', error);
-//     });
-// }
+//delete user
+function deleteUser(id){
+  alert(id);
+    var url_user = 'http://localhost:8000/user'  + '/' + id;
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+              alert(this.responseText);
+          }
+      };
+      xhttp.open("DELETE", url_user, true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      xhttp.send("Your JSON Data Here");
+}

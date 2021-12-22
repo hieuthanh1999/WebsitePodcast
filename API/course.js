@@ -92,8 +92,8 @@ fetch(urlpodcast + '/' + id)
                     <span>10</span>
                   </div>
                   <div class="btn btn-toggle-play">
-                    <i class="fas fa-pause icon-pause"></i>
-                    <i class="fas fa-play icon-play"></i>
+                    <i id="pau" onclick="pau()"  class="fas fa-pause icon-pause"></i>
+                    <i id="pay" onclick="pla()"   class="fas fa-play icon-play"></i>
                   </div>
                   <div class="btn btn-next">
                     <i class="las la-redo-alt" title="Skip 10s"></i>
@@ -103,7 +103,10 @@ fetch(urlpodcast + '/' + id)
                     <i class="las la-download"></i>
                   </div>
                 </div>
-                <audio id="audio" src="${responses.audio}"></audio>
+                <audio id="myAudio">
+                <source src="${responses.audio}" type="audio/ogg">
+              </audio>
+
               </div>
             </div>
 
