@@ -3,7 +3,7 @@ function submitInfor() {
     let email = document.getElementById('email').value;
     var url = 'http://localhost:8000/user';
       fetch(url)
-      .then(response => response)
+      .then(response => response.json())
       .then(data => {
         console.log(data);
         data.forEach(element => {
