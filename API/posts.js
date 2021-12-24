@@ -66,7 +66,8 @@ function blog_click(id, ranker, rankuser){
     window.location.href = "blog_detail.html";
   }
   else{
-    alert('bạn chưa đủ rank để xem')
+    alert('bạn chưa đủ rank để xem');
+    window.location.href = "homepage.html";
   }
 }
 
@@ -165,7 +166,7 @@ function renderLayoutBlogList(responses){
   var htmls = responses.map(function (response) {
     return  `
     <div class="item__post">
-    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">
+    <a class="item__img" onclick="blog_click2(${response.id}, ${response.ranker}, ${userranker})">
       <img
         src="${response.image}"
         alt="">
@@ -193,7 +194,7 @@ function renderLayoutBlogList(responses){
     </div>
     <div class="item__title">
       <a href="blog_detail.html" style="color: black; text-decoration: none;">
-        <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
+        <h3 onclick="blog_click2(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
         <p>
         ${response.content}
         </p>
@@ -213,4 +214,16 @@ function renderLayoutBlogList(responses){
 var html = htmls.join('');
 document.getElementById('blog-list-item').innerHTML = html;
 
+}
+//click vào details
+function blog_click2(id, ranker, rankuser){
+  if(rankuser >= ranker ){
+    sessionStorage.setItem('id-blog', id);
+    sessionStorage.setItem('rank-post', ranker);
+    window.location.href = "blog_detail.html";
+  }
+  else{
+    alert('bạn chưa đủ rank để xem');
+    window.location.href = "blog.html";
+  }
 }
