@@ -59,7 +59,7 @@ async function fetchText() {
                 });
                 html += `
                 <!-- Comment 1 -->
-                <div>
+                <div class="data-id-${comment.id}">
                  <div class="count__comment">
                    <div class="info_cm"
                      style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
@@ -76,7 +76,7 @@ async function fetchText() {
                        </div>
                      </div>
                      <div class="dotdel">
-                       <i class="fas fa-ellipsis-v"></i>
+                       <span onclick="deletecomment(${comment.id})">xóa</span>
                      </div>
                    </div>
                    <div class="delcomment">
@@ -185,4 +185,16 @@ fetch(url_comment2, {
     console.error(err);
   });
 
+}
+function deletecomment(id){
+  fetch(url_comment + "/" + id, {
+    method: 'DELETE'
+    })
+    .then(res => res.text()) // or res.json()
+    .then(function(){
+        var blogdele = document.querySelector('.data-id-' + id);
+        if(blogdele){
+            blogdele.remove();
+        }
+    })
 }
