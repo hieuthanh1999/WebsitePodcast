@@ -193,7 +193,7 @@ function renderLayoutBlogList(responses){
       </div>
     </div>
     <div class="item__title">
-      <a href="blog_detail.html" style="color: black; text-decoration: none;">
+      <a style="color: black; text-decoration: none;">
         <h3 onclick="blog_click2(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
         <p>
         ${response.content}
