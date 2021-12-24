@@ -155,7 +155,7 @@
             var localhost = getUrl.protocol + "//" + getUrl.host + "/";
             let idx = sessionStorage.getItem('idadmin');
             let name = sessionStorage.getItem('nameadmin');
-            alert(idx);
+
             var datas2 =  {
                 "id_user": idx,
                 "id_category": postcategory,
@@ -167,7 +167,6 @@
                 };
 
             VALUE2 = JSON.stringify(datas2);
-            alert(VALUE2);
 
         const myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -183,9 +182,10 @@
         })
             .then(data => {
             console.log(data);
-            //   window.location.href = "view_admins.html";
+              window.location.href = "view_podcast.html";
             })
             .catch((err) => {
+                
             console.error(err);
             });
 };

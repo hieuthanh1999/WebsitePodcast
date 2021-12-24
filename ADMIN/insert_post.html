@@ -157,8 +157,6 @@
             let id = sessionStorage.getItem('idadmin');
 
             let name = sessionStorage.getItem('useradmin');
-            alert(name);
-
             var datas =  {
                 "id_user": id,
                 "id_category": postcategory,
@@ -176,7 +174,6 @@
     };
   
             VALUE = JSON.stringify(datas);
-            alert(VALUE);
 
   const myHeaders = new Headers();
   myHeaders.append('Content-Type', 'application/json');
@@ -192,7 +189,7 @@
   })
     .then(data => {
       console.log(data);
-    //   window.location.href = "view_admins.html";
+      window.location.href = "view_blog.html";
     })
     .catch((err) => {
       console.error(err);
