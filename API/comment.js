@@ -5,6 +5,7 @@ let idcmtblog = sessionStorage.getItem('id-blog');
 getApi(url_comment);
 fetchText();
 async function fetchText() {
+  document.getElementById("comment-input").value = '';
     let response = await fetch(url_comment);
     let response2 = await fetch(url_user);
 
@@ -177,9 +178,11 @@ fetch(url_comment2, {
   .then(data => {
     console.log(data);
     fetchText();
+    
   })
   .catch((err) => {
+
     console.error(err);
   });
- 
+
 }
