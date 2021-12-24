@@ -26,10 +26,10 @@ async function fetchPodcast() {
             }, 500);
         })
     }
-    function getCategoryByIds(userId){
+    function getCategoryByIds(userId){ //userIDF này n chính là list id của thằng categor blog
         return new Promise(resolve => {
-             var results = categorypodcast.filter(function (user) {
-               return userId.includes(user.id);
+             var results = categorypodcast.filter(function (user) { // anh dang lọc ra list category 
+               return userId.includes(user.id); // ví dụ usesr ID 1 2 3,  thì thằng này n sẽ lấy ra 1 2 3 trong cái list category
              });
              setTimeout(function(){
                  resolve(results);
@@ -47,30 +47,28 @@ async function fetchPodcast() {
         });
      }
      getBlog().then(function(blogs){
-            var categoryId = blogs.map(function (blog) {
+            var categoryId = blogs.map(function (blog) { // lấy ra dc id của blog nhjwng mà anh muốn từ id này lấy ra dc id của thằng bàng category
                 return blog.id_category;
             });
             var courseId = blogs.map(function (blog) {
                 return blog.id_course;
             });
-            return getCategoryByIds(categoryId).then(function (categorys) {
-                return getCourseByIds(courseId).then(function (courses) {
+            return getCategoryByIds(categoryId).then(function (categorys) { // categorys  // id 1 2 3 thằng api category
+                return getCourseByIds(courseId).then(function (courses) { // id của api course
                     return {
                         category : categorys,
-                        blog : blogs,
+                        blog : blogs,   //1 list chứa 3 api 
                         course : courses
                     };
                 });
-            });
-         
-         
-        }).then(function(data){
+            }); 
+        }).then(function(data){ 
             console.log(data);
            var html = '';
            var j = 1;
-            data.blog.map(function (blog){
-                var category = data.category.find(function (category){
-                    return category.id === blog.id_category;
+            data.blog.map(function (blog){ // a dang 1 list chứa 3 api 
+                var category = data.category.find(function (category){ // vào đây data chứa 3 api lúc này a sẽ lấy ra category 
+                    return category.id === blog.id_category; //trả về name category  khi so sánh id category của blog và id category của category 
                 });
                 var course = data.course.find(function (course){
                     return course.id === blog.id_course;
