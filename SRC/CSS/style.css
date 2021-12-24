@@ -1646,6 +1646,7 @@ header .logo {
 
 .input_commnent {
   position: relative;
+  width: 50%;
 }
 
 .input_commnent textarea {

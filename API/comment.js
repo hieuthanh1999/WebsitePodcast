@@ -3,7 +3,7 @@ let url_user = 'http://localhost:8000/user';
 let idcmtblog = sessionStorage.getItem('id-blog');
 
 getApi(url_comment);
- fetchText();
+fetchText();
 async function fetchText() {
     let response = await fetch(url_comment);
     let response2 = await fetch(url_user);
@@ -149,4 +149,37 @@ async function fetchText() {
     }
 }
 
+var idblogcmt  = sessionStorage.getItem('id-blog');
+var idusercmt = sessionStorage.getItem('id-user');
+var url_comment2 = 'http://localhost:8000/comment';
+function clickcomment(){
+  var content = document.getElementById("comment-input").value;
+  var datas = {
+  "id_user": idusercmt,
+  "comment": content,
+  "id_blog": idblogcmt,
+}
+VALUE = JSON.stringify(datas);
 
+const myHeaders = new Headers();
+myHeaders.append('Content-Type', 'application/json');
+myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
+myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+myHeaders.append('Access-Control-Allow-Origin', '*');
+myHeaders.append('Access-Control-Allow-Credentials', 'true');
+
+fetch(url_comment2, {
+  method: 'POST',
+  headers: myHeaders,
+  mode: 'no-cors',
+  body: VALUE
+})
+  .then(data => {
+    console.log(data);
+    fetchText();
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+ 
+}

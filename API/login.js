@@ -19,6 +19,7 @@ function submitInfor() {
               sessionStorage.setItem('user',element.name);
               sessionStorage.setItem('avatar',element.avatar);
               sessionStorage.setItem('ranker',element.ranker);
+              sessionStorage.setItem('id-user',element.id);
               window.location.href = "homepage.html";
             }
             // console.log(element.name);

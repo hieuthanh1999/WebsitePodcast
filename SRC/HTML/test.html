@@ -11,10 +11,9 @@
 <body>
 
 <script>
-    var url_user = 'http://localhost:8000/user/100';
+    var url_user = 'http://localhost:8000/user/97';
     fetch('http://localhost:8000/user/100', {
-  method: 'DELETE',
-  mode: 'no-cors'
+  method: 'DELETE'
 })
 .then(res => res.text()) // or res.json()
 .then(res => console.log(res))

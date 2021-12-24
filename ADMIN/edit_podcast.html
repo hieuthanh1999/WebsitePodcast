@@ -96,23 +96,31 @@
                                     <img  style="display: none;" src="" id="imageblog2"/>
                                 </div>
                                 <div class="right__inputWrapper">
+                                    <label for="image">Audio</label>
+                                    <input type="file" id="fileaudioblog" onchange="changeAudio()">
+                                  <audio id="my-audio" controls>
+                                    <source type="audio/mpeg" src="">
+                                  </audio>
+                                  <audio style="display: none;" id="my-audio2" controls>
+                                    <source type="audio/mpeg" src="">
+                                  </audio>
+                                </div>
+                                <div class="right__inputWrapper">
                                     <label for="p_category">Category</label>
-                                    <select name="" id="postcategoryinsert">
-                                     
+                                    <select name="" id="podcasttcategoryinsert">
                                     </select>
                                 </div>
                                 <div class="right__inputWrapper">
-                                    <label for="p_category">Rank</label>
-                                    <select name="" id="ranker">
+                                    <label for="p_category">Course</label>
+                                    <select name="" id="courses_name">
                                     </select>
                                 </div>
                                 <div class="right__inputWrapper">
                                     <label for="desc">Content</label>
-                                    <textarea name="" id="descriptonblog" cols="30" rows="10" placeholder="Write something..."></textarea>
+                                    <textarea name="" id="descriptonpodcast" cols="30" rows="10"></textarea>
                                 </div>
                                 <input type="hidden" name="view"  id="view" value=""/>
                                 <input type="hidden" name="love"  id="love" value=""/>
-                                <input type="hidden" name="cmt"  id="cmt" value=""/>
                                 <button class="btn" onclick="save()" type="submit">UPDATE</button>
                             <!-- </form> -->
                         </div>
@@ -125,24 +133,24 @@
     <script src="js/main.js"></script>
     <script src="API/index.js"></script>
 <script>
-     let idblog = sessionStorage.getItem('id-blog');
-    console.log(idblog);
+     let idbpodcast = sessionStorage.getItem('id-podcast');
+    console.log(idbpodcast);
 
    
     // get api ra podcast
-    var urlpostdetails = 'http://localhost:8000/post';
-    fetch(urlpostdetails + '/' + idblog)
+    var urlpodcastdetails = 'http://localhost:8000/podcast';
+    fetch(urlpodcastdetails + '/' + idbpodcast)
       .then(response => response.json())
       .then(function (responses) {
-        document.getElementById('ranker').value = responses.ranker;
-        document.querySelector('#postcategoryinsert').value = responses.id_category;
-        document.getElementById('descriptonblog').value = responses.content;
+          console.log(responses);
+        document.getElementById('courses_name').value = responses.id_course;
+        document.querySelector('#podcasttcategoryinsert').value = responses.id_category;
+        document.getElementById('descriptonpodcast').value = responses.content;
         document.getElementById('title').value = responses.title;
         document.getElementById('imageblog').setAttribute('src', responses.image);
         document.getElementById('imageblog2').setAttribute('src', responses.image);
-        document.getElementById('view').value = responses.numview;
-        document.getElementById('love').value= responses.numlove;
-        document.getElementById('cmt').value= responses.numcomment;
+        document.getElementById('my-audio').setAttribute('src', responses.audio);
+        document.getElementById('my-audio2').setAttribute('src', responses.audio);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -190,38 +198,30 @@
     //         }
   
     const formpost = document.getElementById('updateform')
-        var postApiBlog= "http://localhost:8000/post";
+        var postApiBlog= "http://localhost:8000/podcast";
      
         function save(){
         let input = (document.getElementById('fileblog').value).split("\\").pop();
            
            let title = document.getElementById('title').value;
-           let content = document.getElementById('descriptonblog').value;
-           let postcategoryinsert = document.getElementById('postcategoryinsert').value;
-           let ranker = document.getElementById('ranker').value;
-           let love = document.getElementById('love').value;
-           let view = document.getElementById('view').value;
-           let cmt = document.getElementById('cmt').value;
+           let content = document.getElementById('descriptonpodcast').value;
+           let podcasttcategoryinsert = document.getElementById('podcasttcategoryinsert').value;
+           let course = document.getElementById('courses_name').value;
+           let audio = (document.getElementById('my-audio2').getAttribute('src'));
            let inputimage = (document.getElementById('imageblog2').getAttribute('src'));
            let id = sessionStorage.getItem('idadmin');
            let name = sessionStorage.getItem('useradmin');
            var datas =  {
                "id_user": id,
-               "id_category": postcategoryinsert,
-               "user": name,
+               "id_category": podcasttcategoryinsert,
+               "id_course": course,
                "title": title,
                "image": inputimage,
-               "content": content,
-               "numview": view,
-               "numcomment": cmt,
-               "numlove":love,
-               "islove": null,
-               "isgroup": null,
-               "idgroup": null,
-               "ranker": ranker
+               "audio": audio,
+               "content": content
    };
             VALUE = JSON.stringify(datas);
-            var urlpostdetails = 'http://localhost:8000/post/'+idblog;
+            var urlpostdetails = 'http://localhost:8000/podcast/'+ idbpodcast;
             fetch(urlpostdetails, {
             method: 'PUT',
             headers: {
@@ -230,7 +230,7 @@
             body: VALUE
         }).then(response => response.json()).then(data => {
             console.log(data);
-            window.location.href = "view_post.html"
+            window.location.href = "view_podcast.html"
             })
             .catch((err) => {
             console.error(err);

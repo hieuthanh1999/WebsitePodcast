@@ -186,26 +186,25 @@
     <div class="blog">
       <div class="blog_items">
         <div id="blog-item">
-
-      </div> 
+        </div> 
         <!-- Blog comment -->
-        <div class="blog__comment" >
+        <div class="blog__comment">
           <div class="info" style="position: relative; top: 10px;">
             <div class="info__ava">
               <img src="../../IMG/logo_vn.png" alt="">
             </div>
           </div>
-          <form class="comment__text">
+          <div class="comment__text">
             <div class="comment_btn">
-              <button type="button" id="comment">Viết bình luận...</button>
+              <button type="button" id="comment" style="display: none;">Viết bình luận...</button>
               <div class="input_commnent">
-                <div data-emojiarea data-type="unicode" data-global-picker="false">
-                  <div class="emoji-button">&#x1f604;</div> 
-                  <textarea type="text" placeholder="Viết bình luận..."></textarea>
+                <div data-emojiarea="" data-type="unicode" data-global-picker="false">
+                  <div class="emoji-button" style="display: flex;">😄</div> 
+                  <textarea id="comment-input" type="text" placeholder="Viết bình luận..." style="display: block;"></textarea>
                 </div>
               </div>
             </div>
-            <div class="commnet_event">
+            <div class="commnet_event" style="display: flex;">
               <div class="event">
                 <div class="btn_camera">
                   <input type="file" id="camera">
@@ -221,13 +220,15 @@
               </div>
               <div class="btn_cm">
                 <button class="close_comment" type="button">Hủy</button>
-                <button class="post_comment" type="submit">Đăng</button>
+                <button class="post_comment" onclick="clickcomment()"  type="submit">Đăng</button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
+          <!--comment -->
         <div id="commentblog">
         </div>
+
       </div>
     </div>
 
@@ -374,5 +375,6 @@
 <script src="../../API/comment.js"></script>
 <script src="../../API/category.js"></script>
 <script>
+
 </script>
 </html>

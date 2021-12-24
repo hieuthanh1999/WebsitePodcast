@@ -1,9 +1,11 @@
 
+let url_viewpodcast = 'http://localhost:8000/podcast';
+let url_viewcategory = 'http://localhost:8000/category';
+let url_viewcourse = 'http://localhost:8000/course';
 fetchPodcast();
+
 async function fetchPodcast() {
-    let url_viewpodcast = 'http://localhost:8000/podcast';
-    let url_viewcategory = 'http://localhost:8000/category';
-    let url_viewcourse = 'http://localhost:8000/course';
+
     let podcast = await fetch(url_viewpodcast);
     let category = await fetch(url_viewcategory);
     let course = await fetch(url_viewcourse);
@@ -75,7 +77,7 @@ async function fetchPodcast() {
                 });
            
                 html += `
-                <tr>
+                <tr class="id-podcast-${blog.id}">
                 <td data-label="STT">${j++}</td>
                 <td data-label="Title">${blog.title}</td>
                 <td data-label="Image"><img src="${blog.image}" alt=""></td>
@@ -101,4 +103,16 @@ async function fetchPodcast() {
 }
 
 
-
+    
+function delete_podcast(id){
+    fetch(url_viewpodcast + "/" + id, {
+    method: 'DELETE'
+    })
+    .then(res => res.text()) // or res.json()
+    .then(function(){
+        var blogdele = document.querySelector('.id-podcast-' + id);
+        if(blogdele){
+            blogdele.remove();
+        }
+    })
+    }

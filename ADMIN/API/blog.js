@@ -71,7 +71,7 @@ async function fetchText() {
                     return rank.id === blog.ranker;
                 });
                 html += `
-                <tr>
+                <tr class="id-blog-${blog.id}">
                 <td data-label="STT">${j++}</td>
                 <td data-label="Title">${blog.title}</td>
                 <td data-label="Image"><img src="${blog.image}" alt=""></td>
@@ -90,6 +90,18 @@ async function fetchText() {
             })
         })
     }
+
 }
-
-
+    
+function delete_blog(id){
+    fetch(url_viewblog + "/" + id, {
+    method: 'DELETE'
+    })
+    .then(res => res.text()) // or res.json()
+    .then(function(){
+        var blogdele = document.querySelector('.id-blog-' + id);
+        if(blogdele){
+            blogdele.remove();
+        }
+    })
+    }

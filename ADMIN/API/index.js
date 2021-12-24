@@ -86,7 +86,21 @@ var user = responses.filter(function (person) { return person.type == 'user';});
   document.getElementById('listuser').innerHTML = htmls;
   }
 }
-//GET USER
+
+//delete user
+function deleteUser(id){
+  fetch(url_user + "/" + id, {
+    method: 'DELETE'
+    })
+    .then(res => res.text()) // or res.json()
+    .then(function(){
+        var blogdele = document.querySelector('.data-id-' + id);
+        if(blogdele){
+            blogdele.remove();
+        }
+    })
+}
+//GET PodCast Rank
 function getListRankPodCast(responses) {
       var html = responses.map(function (response) {
             return  `
@@ -96,7 +110,7 @@ function getListRankPodCast(responses) {
     var htmls = html.join('');
     document.getElementById('ranker2').innerHTML = htmls;
   }
-  //GET USER
+  //GET Blog Rank
 function getListRankBlog(responses) {
   var html = responses.map(function (response) {
         return  `
@@ -106,6 +120,7 @@ function getListRankBlog(responses) {
 var htmls = html.join('');
 document.getElementById('ranker').innerHTML = htmls;
 }
+
 //GET List Admin
 function getListAdmin(responses) {
   var userAdmin = responses.filter(function (person) { return person.type == 'admin';});
@@ -165,14 +180,14 @@ function getListCategory(responses) {
   if(blog){
     var htmls = blog.map(function (response) {
       return  `
-      <tr>
+      <tr class="data-id-${response.id}">
         <td data-label="STT">${j++}</td>
         <td data-label="Tiêu đề">${response.name}</td>
         <td data-label="Mô tả">${response.description}</td>
         <td data-label="Sửa" class="right__iconTable"><a
                 ><img onclick="update_category(${response.id})" src="assets/icon-edit.svg"
                     alt=""></a></td>
-        <td data-label="Xoá" class="right__iconTable"><a><img onclick="update_category(${response.id})"
+        <td data-label="Xoá" class="right__iconTable"><a><img onclick="delete_category(${response.id})"
                     src="assets/icon-trash-black.svg" alt=""></a></td>
       </tr>
         `;
@@ -181,6 +196,19 @@ function getListCategory(responses) {
       document.getElementById('list-category').innerHTML = html;
   }
 }
+//Delete Categorys
+function delete_category(id){
+  fetch(url_category + "/" + id, {
+    method: 'DELETE'
+    })
+    .then(res => res.text()) // or res.json()
+    .then(function(){
+        var blogdele = document.querySelector('.data-id-' + id);
+        if(blogdele){
+            blogdele.remove();
+        }
+    })
+}
 //GET List Course
 function getListCategoryPodCast(responses) {
   var podcast = responses.filter(function (person) { return person.type_category == "1"});
@@ -188,14 +216,14 @@ function getListCategoryPodCast(responses) {
   if(podcast){
     var htmls = podcast.map(function (response) {
       return  `
-      <tr>
+      <tr class="data-id-(${response.id}">
       <td data-label="STT">${j++}</td>
       <td data-label="Tiêu đề">${response.name}</td>
       <td data-label="Mô tả">${response.description}</td>
       <td data-label="Sửa" class="right__iconTable"><a
               ><img onclick="update_category(${response.id})" src="assets/icon-edit.svg"
                   alt=""></a></td>
-      <td data-label="Xoá" class="right__iconTable"><a><img onclick="update_category(${response.id})"
+      <td data-label="Xoá" class="right__iconTable"><a><img onclick="delete_category(${response.id})"
                   src="assets/icon-trash-black.svg" alt=""></a></td>
     </tr>
         `;
@@ -208,35 +236,14 @@ function update_category(id){
   sessionStorage.setItem('id-category', id);
   window.location.href = "edit_category.html";
 }
-//GET List Blog
-// function getListBlog(responses) {
-//   var j =1;
-//   console.log(responses);
-//     var htmls = responses.map(function (response) {
-//       return  `
-//       <tr>
-//       <td data-label="STT">${j++}</td>
-//       <td data-label="Title">${response.title}</td>
-//       <td data-label="Image"><img src="${response.image}" alt=""></td>
-//       <td data-label="Category">${response.id_category}</td>
-//       <td data-label="Rank">${response.ranker}</td>
-//       <td data-label="Content" id="limit">
-//       ${response.content}
-//       </td>
-//       <td data-label="Sửa" class="right__iconTable"><a ><img onclick="update_blog(${response.id})"
-//                   src="assets/icon-edit.svg" alt=""></a></td>
-//       <td data-label="Xoá" class="right__iconTable"><a ><img onclick="delete_blog(${response.id})"
-//                   src="assets/icon-trash-black.svg" alt=""></a></td>
-//   </tr>
-//         `;
-//       });
-//       var html = htmls.join('');
-//       document.getElementById('list-blog').innerHTML = html;
-// }
 //Click Update Blog
 function update_blog(id){
   sessionStorage.setItem('id-blog', id);
   window.location.href = "edit_post.html";
+}
+function update_podcast(id){
+  sessionStorage.setItem('id-podcast', id);
+  window.location.href = "edit_podcast.html";
 }
 //GET List PodCast
 // function getListPodCast(responses) {
@@ -311,19 +318,4 @@ function getCoursePost(responses) {
     });
     var html = htmls.join('');
     document.getElementById('courses_name').innerHTML = html;
-}
-
-//delete user
-function deleteUser(id){
-  alert(id);
-    var url_user = 'http://localhost:8000/user'  + '/' + id;
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              alert(this.responseText);
-          }
-      };
-      xhttp.open("DELETE", url_user, true);
-      xhttp.setRequestHeader("Content-type", "application/json");
-      xhttp.send("Your JSON Data Here");
 }
