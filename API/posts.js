@@ -44,7 +44,7 @@ console.log("rank user" + userranker);
       </div>
     </div>
     <div class="item__title" >
-      <h3 onclick="blog_click(${response.id}, ${response.ranker})">${response.title}</h3>
+      <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
     </div>
     <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
     <div class="item__icon">
@@ -165,7 +165,7 @@ function renderLayoutBlogList(responses){
   var htmls = responses.map(function (response) {
     return  `
     <div class="item__post">
-    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker})">
+    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">
       <img
         src="${response.image}"
         alt="">
@@ -193,7 +193,7 @@ function renderLayoutBlogList(responses){
     </div>
     <div class="item__title">
       <a href="blog_detail.html" style="color: black; text-decoration: none;">
-        <h3 onclick="blog_click(${response.id}, ${response.ranker})">${response.title}</h3>
+        <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
         <p>
         ${response.content}
         </p>
