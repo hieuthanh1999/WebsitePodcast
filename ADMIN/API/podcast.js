@@ -100,8 +100,6 @@ async function fetchPodcast() {
     }
 }
 
-
-    
 function delete_podcast(id){
     fetch(url_viewpodcast + "/" + id, {
     method: 'DELETE'
@@ -113,4 +111,4 @@ function delete_podcast(id){
             blogdele.remove();
         }
     })
-    }
+}

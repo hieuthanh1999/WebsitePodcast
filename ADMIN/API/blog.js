@@ -2,6 +2,11 @@ let url_viewblog = 'http://localhost:8000/post';
 let url_viewcategory = 'http://localhost:8000/category';
 let url_viewrank = 'http://localhost:8000/rank';
 fetchText();
+
+// như kiểu tính tổng 1 máng sô nguyên tố, nhưng mà a chưa biết trong mảng đấy số nào là số nguyên tốt
+//thì a sẽ viết 1 hàm riêng để lọc ra thằng nào là thằng số nguyên tốt
+
+
 async function fetchText() {
     let blog = await fetch(url_viewblog);
     let category = await fetch(url_viewcategory);
@@ -63,6 +68,7 @@ async function fetchText() {
         }).then(function(data){
            var html = '';
            var j = 1;
+           console.log(data);
             data.blog.map(function (blog){
                 var category = data.category.find(function (category){
                     return category.id === blog.id_category;

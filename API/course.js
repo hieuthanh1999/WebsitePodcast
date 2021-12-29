@@ -26,6 +26,7 @@ fetch(urlpodcast)
     document.getElementById("id-1").click();
   };
 
+  // get details course
   var urlcoursedetails = 'http://localhost:8000/course';
   fetch(urlcoursedetails + '/' + idcourse)
     .then(response => response.json())

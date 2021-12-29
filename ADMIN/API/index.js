@@ -15,6 +15,7 @@ if(name != null){
   document.getElementById('username-admin').innerHTML = name;
   document.getElementById('image-admin').src = avatar; 
 }
+
 var logoutadmin =  document.getElementById('logoutadmin');
 logoutadmin.onclick = function(){
   console.log(name);
@@ -27,6 +28,7 @@ logoutadmin.onclick = function(){
   window.location = baseUrl + "/SRC/HTML/login.html";
   // alert(window.location.url);
 }
+
 var url_user = 'http://localhost:8000/user';
 var url_course = 'http://localhost:8000/course';
 var url_category = 'http://localhost:8000/category';
@@ -68,7 +70,7 @@ var user = responses.filter(function (person) { return person.type == 'user';});
   if(user){
     var i =1;
     var html = user.map(function (response) {
-          return  `
+        return  `
         <tr class="data-id-${response.id}">
           <td data-label="STT">${i++}</td>
           <td data-label="Hình ảnh" style="text-align: center;"><img
@@ -100,6 +102,7 @@ function deleteUser(id){
         }
     })
 }
+
 //GET PodCast Rank
 function getListRankPodCast(responses) {
       var html = responses.map(function (response) {

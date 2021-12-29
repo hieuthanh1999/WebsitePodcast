@@ -12,6 +12,11 @@ if(name){
   window.location.href = "course_detail.html";
 }
 }
+function clickprofile(){
+  if(name){
+    window.location.href = "profile.html";
+  }
+}
 if(name != null){
   console.log(name);
   console.log(avatar);

@@ -75,8 +75,8 @@ async function fetchText() {
                          <i class="fas fa-crown" title="Quản trị viên"></i> Render
                        </div>
                      </div>
-                     <div class="dotdel">
-                       <span onclick="deletecomment(${comment.id})">xóa</span>
+                     <div class="dotdel" id="deletecmt">
+                       <span onclick="deletecomment(${comment.id}, ${user.id})">xóa</span>
                      </div>
                    </div>
                    <div class="delcomment">
@@ -98,12 +98,7 @@ async function fetchText() {
                          <span class="rep">Phản hồi</span>
                        </div>
                      </div>
-                     <div class="people_liked">
-                       <div>
-                         <img src="../../IMG/logo_vn.png" alt="" style="width: 13px; height: 13px; border-radius: 50%;">
-                       </div>
-                       <span>1</span>&nbsp;lượt thích
-                     </div>
+
                    </div>
                     <!-- Viết phản hồi đầu tiên cho bình luận -->
                     <div class="feedback_cm">
@@ -149,11 +144,11 @@ async function fetchText() {
         })
     }
 }
-
 var idblogcmt  = sessionStorage.getItem('id-blog');
 var idusercmt = sessionStorage.getItem('id-user');
 var url_comment2 = 'http://localhost:8000/comment';
 function clickcomment(){
+  
   var content = document.getElementById("comment-input").value;
   var datas = {
   "id_user": idusercmt,
@@ -178,7 +173,7 @@ fetch(url_comment2, {
   .then(data => {
     console.log(data);
     fetchText();
-    
+    location.reload();
   })
   .catch((err) => {
 
@@ -186,15 +181,19 @@ fetch(url_comment2, {
   });
 
 }
-function deletecomment(id){
-  fetch(url_comment + "/" + id, {
-    method: 'DELETE'
-    })
-    .then(res => res.text()) // or res.json()
-    .then(function(){
-        var blogdele = document.querySelector('.data-id-' + id);
-        if(blogdele){
-            blogdele.remove();
-        }
-    })
+function deletecomment(id, user){
+  if(idusercmt == user){
+    fetch(url_comment + "/" + id, {
+      method: 'DELETE'
+      })
+      .then(res => res.text()) // or res.json()
+      .then(function(){
+          var blogdele = document.querySelector('.data-id-' + id);
+          if(blogdele){
+              blogdele.remove();
+          }
+      })
+  }else{
+    alert("bạn không có quyền xóa!")
+  }
 }
