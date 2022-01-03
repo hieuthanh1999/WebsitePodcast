@@ -310,7 +310,7 @@ function renderLayoutBlogList(responses){
   var htmls = responses.map(function (response) {
     return  `
     <div class="item__post">
-    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">
+    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
       <img
         src="${response.image}"
         alt="">
@@ -338,7 +338,7 @@ function renderLayoutBlogList(responses){
     </div>
     <div class="item__title">
       <a style="color: black; text-decoration: none;">
-        <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker})">${response.title}</h3>
+        <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
         <p>
         ${response.content}
         </p>
