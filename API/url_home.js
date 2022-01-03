@@ -42,12 +42,12 @@ async function checkrankusser(){
           }
           case 10 : {
             var datas =  {
-              "name": usercheck.name,
-              "email": usercheck.email,
-              "password": usercheck.password,
-              "phone":usercheck.phone,
-              "avatar": usercheck.avatar,
-              "type": usercheck.type,
+              "name": apirankuser.name,
+              "email": apirankuser.email,
+              "password": apirankuser.password,
+              "phone":apirankuser.phone,
+              "avatar": apirankuser.avatar,
+              "type": apirankuser.type,
               "ranker": "3"
           }
           let rankcheck = "3"
