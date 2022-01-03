@@ -1,9 +1,18 @@
 
 function start() {
-    getApi(url_category_pod, getCategory);
+    getApi2(url_category_pod, getCategory);
 }
 start();
-  
+function getApi2(url,callback) {
+  fetch(url)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(callback)
+  .catch((error) => {
+      console.error('Error:', error);
+  });
+}
 //Get Category Blog And Podcast
 
 function getCategory(responses){

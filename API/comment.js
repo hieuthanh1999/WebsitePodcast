@@ -2,7 +2,7 @@ let url_comment = 'http://localhost:8000/comment';
 let url_user = 'http://localhost:8000/user';
 let idcmtblog = sessionStorage.getItem('id-blog');
 
-getApi(url_comment);
+// getApi(url_comment);
 fetchText();
 async function fetchText() {
   document.getElementById("comment-input").value = '';
@@ -173,7 +173,7 @@ fetch(url_comment2, {
   .then(data => {
     console.log(data);
     fetchText();
-    location.reload();
+    // location.reload();
   })
   .catch((err) => {
 
