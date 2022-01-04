@@ -173,7 +173,7 @@ fetch(url_comment2, {
   .then(data => {
     console.log(data);
     fetchText();
-    // location.reload();
+    location.reload();
   })
   .catch((err) => {
 

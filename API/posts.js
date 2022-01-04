@@ -246,9 +246,9 @@ async function fetchText() {
     `;
 
     document.getElementById('blog-item').innerHTML = htmls;
-    // if(usersloglove[0].status == 1 ){
-    //   document.getElementById('hearthihi').style.color = 'red';
-    // }
+    if(usersloglove[0].status == 1 ){
+      document.getElementById('hearthihi').style.color = 'red';
+    }
         })
     }
 }

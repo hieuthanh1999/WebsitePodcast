@@ -37,7 +37,7 @@ var url_rank = 'http://localhost:8000/rank';
 var url_podcast = 'http://localhost:8000/podcast';
 //ham main 
 function start() {
-  getApiAdmin(url_user ,getListUser);
+  // getApiAdmin(url_user ,getListUser);
   getApiAdmin(url_user ,getListAdmin);
   getApiAdmin(url_course ,getListCourse);
   getApiAdmin(url_category ,getListCategory);
@@ -65,29 +65,9 @@ function getApiAdmin(url,callback) {
   });
 }
 //GET USER
-function getListUser(responses) {
-var user = responses.filter(function (person) { return person.type == 'user';});
-  if(user){
-    var i =1;
-    var html = user.map(function (response) {
-        return  `
-        <tr class="data-id-${response.id}">
-          <td data-label="STT">${i++}</td>
-          <td data-label="Hình ảnh" style="text-align: center;"><img
-                  style="width: 50px;height: 50px; border-radius: 100%; object-fit: cover;"
-                  src="${response.avatar}" alt=""></td>
-          <td data-label="Tên">${response.name}</td>
-          <td data-label="Email">${response.email}</td>
-          <td data-label="Phone">${response.phone}</td>
-          <td data-label="Xoá" class="right__iconTable"><a><img
-                      src="assets/icon-trash-black.svg" onclick="deleteUser(${response.id})" alt=""></a></td>
-      </tr>
-        `;
-  });
-  var htmls = html.join('');
-  document.getElementById('listuser').innerHTML = htmls;
-  }
-}
+// function getListUser(responses) {
+
+// }
 
 //delete user
 function deleteUser(id){
