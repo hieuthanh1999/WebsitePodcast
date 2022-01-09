@@ -3,61 +3,6 @@
 // getLayotBlog(getApi(url_podcast));
     // get api ra 
 var url_blog = 'http://localhost:8000/post';
-function start() {
-  getApi(url_blog ,renderLayoutBlog);
-  getApi(url_blog ,renderLayoutBlogList);
-}
-start();
-
-//Get API chung
-function getApi(url,callback) {
-  fetch(url)
-  .then(function (response) {
-    return response.json();
-  })
-  .then(callback)
-  .catch((error) => {
-      console.error('Error:', error);
-  });
-}
-//Get Blog in home page
-function renderLayoutBlog(responses){
-  console.log(responses);
-  let userranker = sessionStorage.getItem('ranker');
-  let idusersave = sessionStorage.getItem('id-user');
-console.log("rank user" + userranker);
-  var htmls = responses.map(function (response) {
-    return  `
-    <div class="itemhome__post" id="post-item">
-    <div class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
-      <img src="${response.image}" alt="">
-    </div>
-    <div class="item__info">
-      <div class="info__ava">
-        <img src="../../IMG/logo_vn.png" alt="">
-      </div>
-      <div class="info__text">
-        <h5>${response.user}</h5>
-        <p class="realtime">4 giờ trước</p>
-      </div>
-      <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
-        <i class="fas fa-crown" title="Quản trị viên"></i>
-      </div>
-    </div>
-    <div class="item__title" >
-      <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
-    </div>
-    <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
-    <div class="item__icon">
-      <i class="far fa-eye">${response.numview}</i>
-      <i class="far fa-heart">${response.numlove}</i>
-    </div>
-  </div>
-    `;
-});
-  var html = htmls.join('');
-  document.getElementById('postItem').innerHTML = html;
-}
 
 //click vào details
 function blog_click(id, ranker, rankuser, iduser){
@@ -305,60 +250,7 @@ function cliclike(idblog, iduser){
  
 }
 
-function renderLayoutBlogList(responses){
-  let userranker = sessionStorage.getItem('ranker');
-  var htmls = responses.map(function (response) {
-    return  `
-    <div class="item__post">
-    <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
-      <img
-        src="${response.image}"
-        alt="">
-    </a>
-    <div style="display: flex;">
-      <div class="item__info">
-        <div class="info__avablog">
-          <img src="../../IMG/logo_vn.png" alt="">
-        </div>
-        <div class="info__text">
-          <h5>${response.user}</h5>
-          <p class="realtimebl">4 giờ trước</p>
-        </div>
-        <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
-          <i class="fas fa-crown" title="Quản trị viên"></i>
-        </div>
-      </div>
-      <div class="dots">
-        <i class="fas fa-ellipsis-v"></i>
-        <span class="share" id="share">
-          <i class="fas fa-share"></i>
-          Chia sẻ bài đăng
-        </span>
-      </div>
-    </div>
-    <div class="item__title">
-      <a style="color: black; text-decoration: none;">
-        <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
-        <p>
-        ${response.content}
-        </p>
-      </a>
-    </div>
-    <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
-    <div class="item__icon">
-      <div>
-        <i class="far fa-eye">${response.numview}</i>
-        <i class="far fa-comment-alt" style="margin-left: 10px;"> 10</i>
-      </div>
-      <i class="far fa-heart"> ${response.numlove}</i>
-    </div>
-  </div>
-    `;
-});
-var html = htmls.join('');
-document.getElementById('blog-list-item').innerHTML = html;
 
-}
 // //click vào details
 // function blog_click2(id, ranker, rankuser){
 //   if(rankuser >= ranker ){
@@ -371,3 +263,255 @@ document.getElementById('blog-list-item').innerHTML = html;
 //     window.location.href = "blog.html";
 //   }
 // }
+
+
+var url_ranker = 'http://localhost:8000/rank';
+// getApi(url_comment);
+fetchBlog();
+async function fetchBlog() {
+  let userranker = sessionStorage.getItem('ranker');
+  let idusersave = sessionStorage.getItem('id-user');
+    let response = await fetch(url_blog);
+    let response2 = await fetch(url_ranker);
+    getLayoutHomePage(response, response2, userranker, idusersave);
+  
+}
+
+async function getLayoutHomePage(response, response2,  userranker, idusersave){
+    // console.log(response.status); // 200
+    // console.log(response.statusText); // OK
+
+    if (response.status === 200) {
+      let blogjson = await response.json();
+      let rankjson = await response2.json();
+  function getComment(){
+      return new Promise(resolve => {
+          setTimeout(function(){
+              resolve(blogjson)
+          }, 500);
+      })
+  }
+  function getranksByIds(rankId){
+      return new Promise(resolve => {
+           var results = rankjson.filter(function (rank) {
+             return rankId.includes(rank.id);
+           });
+           setTimeout(function(){
+               resolve(results);
+           });     
+      });
+   }
+   getComment().then(function(blogs){
+          var rankId = blogjson.map(function (blog) {
+              return blog.ranker;
+          });
+          return getranksByIds(rankId).then(function (ranks){
+              return {
+                  ranks : ranks,
+                  blog : blogs,
+              };
+          });
+      }).then(function(data){
+        console.log("dsadsadsd");
+        console.log(data);
+        var html = '';
+         data.blog.map(function (response) {
+          var rankbyblog = data.ranks.find(function (rank){
+            return rank.id === response.ranker;
+        });
+        html +=  `
+          <div class="itemhome__post" id="post-item">
+          <div class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
+            <img src="${response.image}" alt="">
+          </div>
+          <div class="item__info">
+            <div class="info__ava">
+              <img src="../../IMG/logo_vn.png" alt="">
+            </div>
+            <div class="info__text">
+              <h5>${response.user}</h5>
+              <p class="realtime">4 giờ trước</p>
+            </div>
+            <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
+              rank:<span>${rankbyblog.name}</span>
+            </div>
+          </div>
+          <div class="item__title" >
+            <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
+          </div>
+          <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
+          <div class="item__icon">
+            <i class="far fa-eye">${response.numview}</i>
+            <i class="far fa-heart">${response.numlove}</i>
+          </div>
+        </div>
+          `;
+      });
+        // var html = htmls.join('');
+        document.getElementById('postItem').innerHTML = html;
+      })
+      getComment().then(function(blogs){
+          var rankId = blogjson.map(function (blog) {
+              return blog.ranker;
+          });
+          return getranksByIds(rankId).then(function (ranks){
+              return {
+                  ranks : ranks,
+                  blog : blogs,
+              };
+          });
+      }).then(function(data){
+        console.log("dsadsadsd");
+        console.log(data);
+        var html2 = '';
+         data.blog.map(function (response) {
+          var rankbyblog = data.ranks.find(function (rank){
+            return rank.id === response.ranker;
+        });
+        html2 +=  `
+        <div class="item__post">
+        <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
+          <img
+            src="${response.image}"
+            alt="">
+        </a>
+        <div style="display: flex;">
+          <div class="item__info">
+            <div class="info__avablog">
+              <img src="../../IMG/logo_vn.png" alt="">
+            </div>
+            <div class="info__text">
+              <h5>${response.user}</h5>
+              <p class="realtimebl">4 giờ trước</p>
+            </div>
+            <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
+              rank:<span>${rankbyblog.name}</span>
+            </div>
+          </div>
+          <div class="dots">
+            <i class="fas fa-ellipsis-v"></i>
+            <span class="share" id="share">
+              <i class="fas fa-share"></i>
+              Chia sẻ bài đăng
+            </span>
+          </div>
+        </div>
+        <div class="item__title">
+          <a style="color: black; text-decoration: none;">
+            <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
+            <p>
+            ${response.content}
+            </p>
+          </a>
+        </div>
+        <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
+        <div class="item__icon">
+          <div>
+            <i class="far fa-eye">${response.numview}</i>
+            <i class="far fa-comment-alt" style="margin-left: 10px;"> 10</i>
+          </div>
+          <i class="far fa-heart"> ${response.numlove}</i>
+        </div>
+      </div>
+          `;
+      });
+        // var html = htmls.join('');
+        document.getElementById('blog-list-item').innerHTML = html2;
+      })
+  }
+}
+
+async function getLayoutBlogList(response, response2,  userranker, idusersave){
+  // console.log(response.status); // 200
+  // console.log(response.statusText); // OK
+
+  if (response.status === 200) {
+    let blogjson = await response.json();
+    let rankjson = await response2.json();
+function getComment(){
+    return new Promise(resolve => {
+        setTimeout(function(){
+            resolve(blogjson)
+        }, 500);
+    })
+}
+function getranksByIds(rankId){
+    return new Promise(resolve => {
+         var results = rankjson.filter(function (rank) {
+           return rankId.includes(rank.id);
+         });
+         setTimeout(function(){
+             resolve(results);
+         });     
+    });
+ }
+ getComment().then(function(blogs){
+        var rankId = blogjson.map(function (blog) {
+            return blog.ranker;
+        });
+        return getranksByIds(rankId).then(function (ranks){
+            return {
+                ranks : ranks,
+                blog : blogs,
+            };
+        });
+    }).then(function(data){
+      console.log("dsadsadsd");
+      console.log(data);
+      var html = '';
+       data.blog.map(function (response) {
+        var rankbyblog = data.ranks.find(function (rank){
+          return rank.id === response.ranker;
+      });
+      html +=  `
+      <div class="item__post">
+      <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
+        <img
+          src="${response.image}"
+          alt="">
+      </a>
+      <div style="display: flex;">
+        <div class="item__info">
+          <div class="info__avablog">
+            <img src="../../IMG/logo_vn.png" alt="">
+          </div>
+          <div class="info__text">
+            <h5>${response.user}</h5>
+            <p class="realtimebl">4 giờ trước</p>
+          </div>
+          <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
+            rank:<span>${rankbyblog.name}</span>
+          </div>
+        </div>
+        <div class="dots">
+          <i class="fas fa-ellipsis-v"></i>
+          <span class="share" id="share">
+            <i class="fas fa-share"></i>
+            Chia sẻ bài đăng
+          </span>
+        </div>
+      </div>
+      <div class="item__title">
+        <a style="color: black; text-decoration: none;">
+          <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
+          <p>
+          ${response.content}
+          </p>
+        </a>
+      </div>
+      <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
+      <div class="item__icon">
+        <div>
+          <i class="far fa-eye">${response.numview}</i>
+          <i class="far fa-comment-alt" style="margin-left: 10px;"> 10</i>
+        </div>
+        <i class="far fa-heart"> ${response.numlove}</i>
+      </div>
+    </div>
+        `;
+    });
+      // var html = htmls.join('');
+      document.getElementById('blog-list-item').innerHTML = html;
+    })
+}
+}

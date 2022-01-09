@@ -27,8 +27,13 @@ body {
   align-items: center;
 }
 /* Header */
-
-/* 
+#ranker{
+  font-size: 14px;
+}
+.fas.fa-crown{
+  font-size: 14px;
+}
+  /* 
 header.sticky {
   background: #505050;
   padding: 20px 100px;
@@ -440,7 +445,7 @@ header .logo {
 
 .itemhome__post .item__img img {
   width: 291px;
-  height: 220px;
+  height: 400px;
   cursor: pointer;
   background-color: darkgray;
 }

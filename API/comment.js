@@ -1,5 +1,6 @@
 let url_comment = 'http://localhost:8000/comment';
 let url_user = 'http://localhost:8000/user';
+let url_ranks = 'http://localhost:8000/rank';
 let idcmtblog = sessionStorage.getItem('id-blog');
 
 // getApi(url_comment);
@@ -8,6 +9,7 @@ async function fetchText() {
   document.getElementById("comment-input").value = '';
     let response = await fetch(url_comment);
     let response2 = await fetch(url_user);
+    let rankss = await fetch(url_ranks);
 
     // console.log(response.status); // 200
     // console.log(response.statusText); // OK
@@ -15,6 +17,7 @@ async function fetchText() {
     if (response.status === 200) {
         let commentsx = await response.json();
         let apiuser = await response2.json();
+        let apirank = await rankss.json();
         var users = apiuser.filter(function(user) {
             return user.type == "user";
         });
@@ -39,23 +42,49 @@ async function fetchText() {
              });     
         });
      }
+     function geRanksByIds(userId){
+      return new Promise(resolve => {
+           var results = apirank.filter(function (user) {
+             return userId.includes(user.id);
+           });
+           setTimeout(function(){
+               resolve(results);
+           });     
+      });
+   }
+    async function getRankbyuser(ranker){
+      let apiranks = await fetch(url_ranks + '/' + ranker);
+      let rankuser = await apiranks.json();
+      return rankuser;
+   }
      getComment().then(function(comments){
             var userId = comments.map(function (comment) {
                 return comment.id_user;
             });
+            var userankId = users.map(function (user) {
+              return user.ranker;
+          });
             return getUsersByIds(userId).then(function (users){
-                return {
+                return geRanksByIds(userankId).then(function (ranks){
+                  return {
                     user : users,
                     comments : comments,
+                    ranks: ranks
                 };
+                })
+               
             });
         }).then(function(data){
            var list = document.getElementById('commentblog');
            var html = '';
+           console.log("12321321");
            console.log(data);
             data.comments.map(function (comment){
                 var user = data.user.find(function (user){
                     return user.id === comment.id_user;
+                });
+                var ranksuser = data.ranks.find(function (ranks){
+                  return user.ranker === ranks.id;
                 });
                 html += `
                 <!-- Comment 1 -->
@@ -71,8 +100,8 @@ async function fetchText() {
                          <h4>${user.name}</h4>
                          <p class="realtimedt_cm">${comment.reg_date}</p>
                        </div>
-                       <div style="position: relative; top: 6px; left: 9px; font-size: 7px; cursor: pointer;">
-                         <i class="fas fa-crown" title="Quản trị viên"></i> Render
+                       <div style="position: relative; top: 2px; left: 9px; font-size: 7px; cursor: pointer;">
+                         <i class="fas fa-crown" title="Quản trị viên"></i> <span id="ranker">${ranksuser.name}</span>
                        </div>
                      </div>
                      <div class="dotdel" id="deletecmt">
