@@ -1,5 +1,5 @@
 var url_blog = 'http://localhost:8000/post';
-var url_category_pod = 'http://localhost:8000/category';
+var url_category = 'http://localhost:8000/category';
 var url_podcast = 'http://localhost:8000/podcast';
 
 //Xử lý session user
@@ -7,6 +7,7 @@ let name = sessionStorage.getItem('user');
 let avatar = sessionStorage.getItem('avatar');
 let ranker = sessionStorage.getItem('ranker');
 let idusersetrank = sessionStorage.getItem('id-user');
+//xử lý xem có tồn tại name user ko?
 if(name){
   function course_click(id){
   sessionStorage.setItem('id-course', id);
@@ -21,11 +22,13 @@ async function getuser(url){
     return apirank.rank;
   }
 }
+//click vào trang profile
 function clickprofile(){
   if(name){
     window.location.href = "profile.html";
   }
 }
+//xử lý xem có tồn tại name user ko? xử lý logout
 if(name != null){
   console.log(name);
   console.log(avatar);
@@ -45,6 +48,7 @@ else{
   document.getElementById('nonelogin').style.display = 'flex';
   document.getElementById('name-profile');
 }
+//xử lý logout và hủy storage
 var logout =  document.getElementById('logouthome');
 logout.onclick = function(){
   console.log(name);

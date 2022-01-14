@@ -1,5 +1,6 @@
 var postApi = "http://localhost:8000/user";
 
+//Lấy dữ liệu từ các trường lưu vào bảng user
 form.addEventListener('submit', function (e) {
   let username = document.getElementById('username').value;
   let email = document.getElementById('email').value;

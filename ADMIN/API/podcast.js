@@ -16,16 +16,19 @@ async function fetchPodcast() {
         let blogs = await podcast.json();
         let categorys = await category.json();
         let courses = await course.json();
+        //lọc ra cateogry có type là podcast
         var categorypodcast = categorys.filter(function(category) {
             return category.type_category == "1";
         });
-    function getBlog(){
+         //get Podcast
+    function getPodCast(){
         return new Promise(resolve => {
             setTimeout(function(){
                 resolve(blogs)
             }, 500);
         })
     }
+     //get bảng category theo idCateogry của podcast
     function getCategoryByIds(userId){ //userIDF này n chính là list id của thằng categor blog
         return new Promise(resolve => {
              var results = categorypodcast.filter(function (user) { // anh dang lọc ra list category 
@@ -36,6 +39,7 @@ async function fetchPodcast() {
              });     
         });
      }
+       //get bảng course theo idCourse của podcast
      function getCourseByIds(userId){
         return new Promise(resolve => {
              var results = courses.filter(function (user) {
@@ -46,7 +50,8 @@ async function fetchPodcast() {
              });     
         });
      }
-     getBlog().then(function(blogs){
+      //thực hiện gộp mảng trả về và đổ dữ liệu
+     getPodCast().then(function(blogs){
             var categoryId = blogs.map(function (blog) { // lấy ra dc id của blog nhjwng mà anh muốn từ id này lấy ra dc id của thằng bàng category
                 return blog.id_category;
             });
@@ -99,7 +104,7 @@ async function fetchPodcast() {
         })
     }
 }
-
+//xóa blog thay vì load lại trang chúng ta sẽ xóa element
 function delete_podcast(id){
     fetch(url_viewpodcast + "/" + id, {
     method: 'DELETE'

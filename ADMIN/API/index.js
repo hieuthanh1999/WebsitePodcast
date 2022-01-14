@@ -42,8 +42,6 @@ function start() {
   getApiAdmin(url_course ,getListCourse);
   getApiAdmin(url_category ,getListCategory);
   getApiAdmin(url_category ,getListCategoryPodCast);
-  // getApiAdmin(url_blog ,getListBlog);
-  // getApiAdmin(url_podcast ,getListPodCast);
   getApiAdmin(url_category ,getCategoryPost);
   getApiAdmin(url_category ,getCategoryPostInsert);
   getApiAdmin(url_category ,getCategoryPodCastInsert);
@@ -64,10 +62,6 @@ function getApiAdmin(url,callback) {
       console.error('Error:', error);
   });
 }
-//GET USER
-// function getListUser(responses) {
-
-// }
 
 //delete user
 function deleteUser(id){

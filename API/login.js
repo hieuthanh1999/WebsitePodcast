@@ -1,3 +1,4 @@
+// xử lý form login và set các storage điều hướng tới home
 function submitInfor() {
     let pass = document.getElementById('password').value;
     let email = document.getElementById('email').value;

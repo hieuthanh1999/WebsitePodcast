@@ -1,16 +1,17 @@
 
-// get api ra podcast
-// getLayotBlog(getApi(url_podcast));
-    // get api ra 
 var url_blog = 'http://localhost:8000/post';
-var dem = 0;
+var url_ranker = 'http://localhost:8000/rank';
+
+let idblog = sessionStorage.getItem('id-blog');
+var iduserlike = sessionStorage.getItem('id-user');
+
 //click vào details
 function blog_click(id, ranker, rankuser, iduser){
   if(rankuser >= ranker ){
     sessionStorage.setItem('id-blog-'+ id,   dem++);
     sessionStorage.setItem('id-blog', id);
     sessionStorage.setItem('rank-post', ranker);
-    updaterank(id, iduser);
+    insertTableUpdateRank(id, iduser);
   
     setTimeout(() => {
       window.location.href = "blog_detail.html";
@@ -23,7 +24,8 @@ function blog_click(id, ranker, rankuser, iduser){
   }
 }
 
-async function updaterank(idblog, iduser){ 
+// Lưu dữ liệu vào table updaterank
+async function insertTableUpdateRank(idblog, iduser){ 
     var datas = {
       "id_blog": idblog,
       "id_user": iduser
@@ -52,20 +54,14 @@ async function updaterank(idblog, iduser){
 }
 
 //Blog Details
-let idblog = sessionStorage.getItem('id-blog');
-var iduserlike = sessionStorage.getItem('id-user');
-console.log(idblog);
-// get api ra podcast
 var url_blog = 'http://localhost:8000/post';
 var url_userlove = 'http://localhost:8000/userlove';
 var url_usercomment = 'http://localhost:8000/comment';
 var url_userrank = 'http://localhost:8000/updaterank';
-fetchText();
-async function fetchText() {
-
-  console.log("dem blog");
-  console.log(dem);
+getBlogDetails();
+async function getBlogDetails() {
   document.getElementById("comment-input").value = '';
+
     let response = await fetch(url_blog + '/' + idblog);
     let response2 = await fetch(url_userlove);
     let response3 = await fetch(url_usercomment);
@@ -78,8 +74,6 @@ async function fetchText() {
       var usersranktest = apirank.includes(function(user) {
         return user.id_user == iduserlike;
       });
-      console.log("usersranktest");
-      console.log(usersranktest);
     }
     if (response.status === 200) {
         let apiblog = await response.json();
@@ -92,8 +86,7 @@ async function fetchText() {
         userslove.forEach(element => {
           result.push(element);
         });
-
-
+        //lọc dữ liệu theo id blog
         var userscmt = apiusercmt.filter(function(user) {
           return user.id_blog == idblog;
         });
@@ -102,7 +95,6 @@ async function fetchText() {
           result2.push(element);
         });
       
-
     function getBlog(){
         return new Promise(resolve => {
             setTimeout(function(){
@@ -201,116 +193,29 @@ async function fetchText() {
         })
     }
 }
-async function checkId(){
-  if(name){
-    let getlistUserlove = await fetch('http://localhost:8000/userlove');
-    if(datarank.status === 200){
-      let apiuserlove = await getlistUserlove.json();
-      var userlove = apiuserlove.filter(function(user) {
-        return user.id_user == iduserlike && user.id_blog == idblog;
-      });
-      console.log("userlove");
-      console.log(userlove);
-    }
-    
-  }else{
-    console.log("exit");
-  }
-}
 
-function cliclike(idblog, iduser){
-  var idusers = sessionStorage.getItem('id-user');
-  
-  let check  = 1;
-  if(typeof(Storage) !== "undefined") {
-    if (localStorage.clickcount) {
-      localStorage.clickcount = Number(localStorage.clickcount)+1;
-    } else {
-      localStorage.clickcount = 1;
-    }
-    if(localStorage.clickcount == 1) {
-      if((idusers == iduser)){
-        // document.getElementById('hearthihi').style.color = 'red';
-        var datas = {
-          "id_user": iduser,
-          "id_blog": idblog,
-          "status" : check
-        }
-        VALUE = JSON.stringify(datas);
-      
-        const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-        myHeaders.append('Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS');
-        myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
-        myHeaders.append('Access-Control-Allow-Origin', '*');
-        myHeaders.append('Access-Control-Allow-Credentials', 'true');
-      
-        fetch('http://localhost:8000/userlove', {
-          method: 'POST',
-          headers: myHeaders,
-          mode: 'no-cors',
-          body: VALUE
-        })
-          .then(data => {
-            location.reload();
-            checkId();
-            // var idusers = sessionStorage.getItem('id-user');
-            // console.log(data);
-            //   document.getElementById('checkid').value = data.id;
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      }
-    }
-    if(localStorage.clickcount % 2 == 0) {
-      document.getElementById('hearthihi').style.color = 'black';
-    }
-  }
- 
-}
-
-
-// //click vào details
-// function blog_click2(id, ranker, rankuser){
-//   if(rankuser >= ranker ){
-//     sessionStorage.setItem('id-blog', id);
-//     sessionStorage.setItem('rank-post', ranker);
-//     window.location.href = "blog_detail.html";
-//   }
-//   else{
-//     alert('bạn chưa đủ rank để xem');
-//     window.location.href = "blog.html";
-//   }
-// }
-
-
-var url_ranker = 'http://localhost:8000/rank';
-// getApi(url_comment);
 fetchBlog();
 async function fetchBlog() {
   let userranker = sessionStorage.getItem('ranker');
   let idusersave = sessionStorage.getItem('id-user');
     let response = await fetch(url_blog);
     let response2 = await fetch(url_ranker);
-    getLayoutHomePage(response, response2, userranker, idusersave);
+    getLayoutListBlog(response, response2, userranker, idusersave);
   
 }
 
-async function getLayoutHomePage(response, response2,  userranker, idusersave){
-    // console.log(response.status); // 200
-    // console.log(response.statusText); // OK
-
+async function getLayoutListBlog(response, response2,  userranker, idusersave){
     if (response.status === 200) {
       let blogjson = await response.json();
       let rankjson = await response2.json();
-  function getComment(){
+  function getBlog(){
       return new Promise(resolve => {
           setTimeout(function(){
               resolve(blogjson)
           }, 500);
       })
   }
+    //trả về bảng rank theo idrank trong blog
   function getranksByIds(rankId){
       return new Promise(resolve => {
            var results = rankjson.filter(function (rank) {
@@ -321,7 +226,8 @@ async function getLayoutHomePage(response, response2,  userranker, idusersave){
            });     
       });
    }
-   getComment().then(function(blogs){
+    //thực hiện gộp mảng trả về và in ra dữ liệu
+   getBlog().then(function(blogs){
           var rankId = blogjson.map(function (blog) {
               return blog.ranker;
           });
@@ -370,7 +276,7 @@ async function getLayoutHomePage(response, response2,  userranker, idusersave){
         // var html = htmls.join('');
         document.getElementById('postItem').innerHTML = html;
       })
-      getComment().then(function(blogs){
+      getBlog().then(function(blogs){
           var rankId = blogjson.map(function (blog) {
               return blog.ranker;
           });
@@ -439,99 +345,4 @@ async function getLayoutHomePage(response, response2,  userranker, idusersave){
         document.getElementById('blog-list-item').innerHTML = html2;
       })
   }
-}
-
-async function getLayoutBlogList(response, response2,  userranker, idusersave){
-  // console.log(response.status); // 200
-  // console.log(response.statusText); // OK
-
-  if (response.status === 200) {
-    let blogjson = await response.json();
-    let rankjson = await response2.json();
-function getComment(){
-    return new Promise(resolve => {
-        setTimeout(function(){
-            resolve(blogjson)
-        }, 500);
-    })
-}
-function getranksByIds(rankId){
-    return new Promise(resolve => {
-         var results = rankjson.filter(function (rank) {
-           return rankId.includes(rank.id);
-         });
-         setTimeout(function(){
-             resolve(results);
-         });     
-    });
- }
- getComment().then(function(blogs){
-        var rankId = blogjson.map(function (blog) {
-            return blog.ranker;
-        });
-        return getranksByIds(rankId).then(function (ranks){
-            return {
-                ranks : ranks,
-                blog : blogs,
-            };
-        });
-    }).then(function(data){
-      console.log("dsadsadsd");
-      console.log(data);
-      var html = '';
-       data.blog.map(function (response) {
-        var rankbyblog = data.ranks.find(function (rank){
-          return rank.id === response.ranker;
-      });
-      html +=  `
-      <div class="item__post">
-      <a class="item__img" onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">
-        <img
-          src="${response.image}"
-          alt="">
-      </a>
-      <div style="display: flex;">
-        <div class="item__info">
-          <div class="info__avablog">
-            <img src="../../IMG/logo_vn.png" alt="">
-          </div>
-          <div class="info__text">
-            <h5>${response.user}</h5>
-            <p class="realtimebl">4 giờ trước</p>
-          </div>
-          <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
-            rank:<span>${rankbyblog.name}</span>
-          </div>
-        </div>
-        <div class="dots">
-          <i class="fas fa-ellipsis-v"></i>
-          <span class="share" id="share">
-            <i class="fas fa-share"></i>
-            Chia sẻ bài đăng
-          </span>
-        </div>
-      </div>
-      <div class="item__title">
-        <a style="color: black; text-decoration: none;">
-          <h3 onclick="blog_click(${response.id}, ${response.ranker}, ${userranker}, ${idusersave})">${response.title}</h3>
-          <p>
-          ${response.content}
-          </p>
-        </a>
-      </div>
-      <div style="border-bottom: 1px solid#ccc; width: 250px; margin: auto;"></div>
-      <div class="item__icon">
-        <div>
-          <i class="far fa-eye">${response.numview}</i>
-          <i class="far fa-comment-alt" style="margin-left: 10px;"> 10</i>
-        </div>
-        <i class="far fa-heart"> ${response.numlove}</i>
-      </div>
-    </div>
-        `;
-    });
-      // var html = htmls.join('');
-      document.getElementById('blog-list-item').innerHTML = html;
-    })
-}
 }

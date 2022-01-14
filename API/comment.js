@@ -2,8 +2,10 @@ let url_comment = 'http://localhost:8000/comment';
 let url_user = 'http://localhost:8000/user';
 let url_ranks = 'http://localhost:8000/rank';
 let idcmtblog = sessionStorage.getItem('id-blog');
+var idblogcmt  = sessionStorage.getItem('id-blog');
+var idusercmt = sessionStorage.getItem('id-user');
 
-// getApi(url_comment);
+//lấy ra dữ liệu của comment
 fetchText();
 async function fetchText() {
   document.getElementById("comment-input").value = '';
@@ -11,20 +13,18 @@ async function fetchText() {
     let response2 = await fetch(url_user);
     let rankss = await fetch(url_ranks);
 
-    // console.log(response.status); // 200
-    // console.log(response.statusText); // OK
-
     if (response.status === 200) {
         let commentsx = await response.json();
         let apiuser = await response2.json();
         let apirank = await rankss.json();
+        //lọc ra bảng user có type là user
         var users = apiuser.filter(function(user) {
             return user.type == "user";
         });
+        //lọc ra cmt của blog
         var comments = commentsx.filter(function(comment) {
           return comment.id_blog == idcmtblog;
       });
-      console.log(comments);
     function getComment(){
         return new Promise(resolve => {
             setTimeout(function(){
@@ -32,6 +32,7 @@ async function fetchText() {
             }, 500);
         })
     }
+        //trả về bảng user theo iduser trong comment
     function getUsersByIds(userId){
         return new Promise(resolve => {
              var results = users.filter(function (user) {
@@ -42,6 +43,7 @@ async function fetchText() {
              });     
         });
      }
+      //trả về bảng rank theo idrank trong user
      function geRanksByIds(userId){
       return new Promise(resolve => {
            var results = apirank.filter(function (user) {
@@ -52,11 +54,7 @@ async function fetchText() {
            });     
       });
    }
-    async function getRankbyuser(ranker){
-      let apiranks = await fetch(url_ranks + '/' + ranker);
-      let rankuser = await apiranks.json();
-      return rankuser;
-   }
+       //thực hiện gộp mảng trả về và in ra dữ liệu
      getComment().then(function(comments){
             var userId = comments.map(function (comment) {
                 return comment.id_user;
@@ -173,9 +171,8 @@ async function fetchText() {
         })
     }
 }
-var idblogcmt  = sessionStorage.getItem('id-blog');
-var idusercmt = sessionStorage.getItem('id-user');
-var url_comment2 = 'http://localhost:8000/comment';
+
+//xử lý lưu dữ liệu vào bảng cmt
 function clickcomment(){
   
   var content = document.getElementById("comment-input").value;
@@ -193,7 +190,7 @@ myHeaders.append('Access-Control-Allow-Headers','Origin, X-Requested-With, Conte
 myHeaders.append('Access-Control-Allow-Origin', '*');
 myHeaders.append('Access-Control-Allow-Credentials', 'true');
 
-fetch(url_comment2, {
+fetch(url_comment, {
   method: 'POST',
   headers: myHeaders,
   mode: 'no-cors',
@@ -210,6 +207,8 @@ fetch(url_comment2, {
   });
 
 }
+
+//xóa cmt
 function deletecomment(id, user){
   if(idusercmt == user){
     fetch(url_comment + "/" + id, {
@@ -220,6 +219,8 @@ function deletecomment(id, user){
           var blogdele = document.querySelector('.data-id-' + id);
           if(blogdele){
               blogdele.remove();
+              fetchText();
+              location.reload();
           }
       })
   }else{

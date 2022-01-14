@@ -1,6 +1,12 @@
 let idcourse = sessionStorage.getItem('id-course');
-// get api ra podcast
+var url_course = 'http://localhost:8000/course';
 var urlpodcast = 'http://localhost:8000/podcast';
+
+// tự động load ra 1 bản podcast đầu tiên
+window.onload=function(){
+  document.getElementById("id-1").click();
+};
+// get ra list podcast
 fetch(urlpodcast)
   .then(response => response.json())
   .then(function (responses) {
@@ -22,13 +28,9 @@ fetch(urlpodcast)
     console.error('Error:', error);
   });
 
-  window.onload=function(){
-    document.getElementById("id-1").click();
-  };
 
   // get details course
-  var urlcoursedetails = 'http://localhost:8000/course';
-  fetch(urlcoursedetails + '/' + idcourse)
+  fetch(url_course + '/' + idcourse)
     .then(response => response.json())
     .then(function (responses) {
       document.getElementById('imagecourse').setAttribute('src',responses.image);
@@ -38,8 +40,7 @@ fetch(urlpodcast)
       console.error('Error:', error);
     });
   
-var urlcoursedetails = 'http://localhost:8000/course';
-  fetch(urlcoursedetails + '/' + idcourse)
+  fetch(url_course + '/' + idcourse)
     .then(response => response.json())
     .then(function (responses) {
       document.getElementById('imagecourse').setAttribute('src',responses.image);
@@ -49,6 +50,7 @@ var urlcoursedetails = 'http://localhost:8000/course';
       console.error('Error:', error);
     });
 
+    //xử lý click podcast tại course sẽ hiển thị ra bên trái
 function clickpodcast(id){
 fetch(urlpodcast + '/' + id)
   .then(response => response.json())
@@ -130,8 +132,7 @@ fetch(urlpodcast + '/' + id)
     console.error('Error:', error);
   });
 }
- // get api ra podcast
- var url_course = 'http://localhost:8000/course';
+ // get ra course
  fetch(url_course)
      .then(response => response.json())
      .then(function (responses) {

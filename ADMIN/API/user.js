@@ -1,18 +1,11 @@
 let url_users = 'http://localhost:8000/user';
 let url_ranks = 'http://localhost:8000/rank';
 let url_updateranks = 'http://localhost:8000/updaterank';
-// let url_viewcategory = 'http://localhost:8000/category';
-// let url_viewrank = 'http://localhost:8000/rank';
 fetchText();
 async function fetchText() {
     let user = await fetch(url_users);
     let rank = await fetch(url_ranks);
     let updaterank = await fetch(url_updateranks);
-    // let category = await fetch(url_viewcategory);
-    // let rank = await fetch(url_viewrank);
-
-    // console.log(blog.status); // 200
-    // console.log(blog.statusText); // OK
 
     if (user.status === 200) {
         let listuser = await user.json();
@@ -99,15 +92,3 @@ async function fetchText() {
 
 }
     
-function delete_blog(id){
-    fetch(url_viewblog + "/" + id, {
-    method: 'DELETE'
-    })
-    .then(res => res.text()) // or res.json()
-    .then(function(){
-        var blogdele = document.querySelector('.id-blog-' + id);
-        if(blogdele){
-            blogdele.remove();
-        }
-    })
-    }

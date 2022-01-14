@@ -3,17 +3,10 @@ let url_viewcategory = 'http://localhost:8000/category';
 let url_viewrank = 'http://localhost:8000/rank';
 fetchText();
 
-// như kiểu tính tổng 1 máng sô nguyên tố, nhưng mà a chưa biết trong mảng đấy số nào là số nguyên tốt
-//thì a sẽ viết 1 hàm riêng để lọc ra thằng nào là thằng số nguyên tốt
-
-
 async function fetchText() {
     let blog = await fetch(url_viewblog);
     let category = await fetch(url_viewcategory);
     let rank = await fetch(url_viewrank);
-
-    // console.log(blog.status); // 200
-    // console.log(blog.statusText); // OK
 
     if (blog.status === 200) {
         let blogs = await blog.json();
@@ -22,6 +15,7 @@ async function fetchText() {
         var categorypodcast = categorys.filter(function(category) {
             return category.type_category == "0";
         });
+    //get blog
     function getBlog(){
         return new Promise(resolve => {
             setTimeout(function(){
@@ -29,6 +23,7 @@ async function fetchText() {
             }, 500);
         })
     }
+    //get bảng category theo idCateogry của blog
     function getCategoryByIds(userId){
         return new Promise(resolve => {
              var results = categorypodcast.filter(function (user) {
@@ -39,6 +34,7 @@ async function fetchText() {
              });     
         });
      }
+      //get bảng rank theo idRank của blog
      function getRankByIds(userId){
         return new Promise(resolve => {
              var results = ranker.filter(function (user) {
@@ -49,6 +45,7 @@ async function fetchText() {
              });     
         });
      }
+      //thực hiện gộp mảng trả về và đổ dữ liệu
      getBlog().then(function(blogs){
             var categoryId = blogs.map(function (blog) {
                 return blog.id_category;
@@ -99,6 +96,7 @@ async function fetchText() {
 
 }
     
+//xóa blog thay vì load lại trang chúng ta sẽ xóa element
 function delete_blog(id){
     fetch(url_viewblog + "/" + id, {
     method: 'DELETE'

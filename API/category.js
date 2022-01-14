@@ -1,21 +1,10 @@
 
-function start() {
-    getApi2(url_category_pod, getCategory);
-}
-start();
-function getApi2(url,callback) {
-  fetch(url)
+//hàm get ra list category khi get ra sẽ lọc category đầu tiên sau đó mới in ra
+fetch(url_category)
   .then(function (response) {
     return response.json();
   })
-  .then(callback)
-  .catch((error) => {
-      console.error('Error:', error);
-  });
-}
-//Get Category Blog And Podcast
-
-function getCategory(responses){
+  .then(function(responses){
     var blog = responses.filter(function (person) { return person.type_category == "0"});
     var podcast = responses.filter(function (person) { return person.type_category == "1"});
     if(blog){
@@ -37,4 +26,8 @@ function getCategory(responses){
         document.getElementById('category-podcast').innerHTML = html;
       }
   }
-  
+  )
+  .catch((error) => {
+      console.error('Error:', error);
+  });
+

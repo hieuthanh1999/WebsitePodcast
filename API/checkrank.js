@@ -2,6 +2,7 @@ let namecheck = sessionStorage.getItem('user');
 if(namecheck){
     checkrankusser();
 }
+//kiểm tra số lượng xem blog của user và kiểm tra rank hiện tại của usesr để update
 async function checkrankusser(){
     let datarankuser = await fetch('http://localhost:8000/updaterank');
     let usercheck = await fetch('http://localhost:8000/user' + "/" + idusersetrank);
@@ -39,33 +40,9 @@ async function checkrankusser(){
             let rankcheck = "3"
             updateuser(datas,idusersetrank, rankcheck );
         }
-        // switch (checkrank.length)
-        // {
-        //     case 5 : {
-               
-        //         break;
-        //     }
-        //     case 10 : {
-        //       var datas =  {
-        //         "name": apirankuser.name,
-        //         "email": apirankuser.email,
-        //         "password": apirankuser.password,
-        //         "phone":apirankuser.phone,
-        //         "avatar": apirankuser.avatar,
-        //         "type": apirankuser.type,
-        //         "ranker": "3"
-        //     }
-        //     let rankcheck = "3"
-        //     updateuser(datas,idusersetrank, rankcheck );
-        //         break;
-        //     }
-        //     default : {
-               
-        //     }
-        // }
-  
       }
   }
+  //hàm update user api
   async function updateuser(datas, iduser, ranker){
     VALUE = JSON.stringify(datas);
   
@@ -84,7 +61,11 @@ async function checkrankusser(){
       body: VALUE
     })
     .then(function (responses) {
-      alert("chúc mừng bạn  đã lên level!");
+      if(ranker==2){
+        alert("chúc mừng bạn  đã lên rank bạc!");
+      }else if(ranker==3){
+        alert("chúc mừng bạn  đã lên rank vàng!");
+      }
       sessionStorage.setItem('ranker',ranker);
     })
     .catch((err) => {
