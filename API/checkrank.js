@@ -1,5 +1,5 @@
-let name = sessionStorage.getItem('user');
-if(name){
+let namecheck = sessionStorage.getItem('user');
+if(namecheck){
     checkrankusser();
 }
 async function checkrankusser(){
@@ -8,6 +8,8 @@ async function checkrankusser(){
       if(datarankuser.status === 200){
         let apirank = await datarankuser.json();
         let apirankuser = await usercheck.json();
+        console.log("sadsadsdssdsdsadasdsdsa");
+        console.log(apirankuser);
         var checkrank = apirank.filter(function(user) {
           return user.id_user == idusersetrank;
         });
