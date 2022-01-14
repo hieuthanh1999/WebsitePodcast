@@ -3,14 +3,15 @@
 // getLayotBlog(getApi(url_podcast));
     // get api ra 
 var url_blog = 'http://localhost:8000/post';
-
+var dem = 0;
 //click vào details
 function blog_click(id, ranker, rankuser, iduser){
   if(rankuser >= ranker ){
-    
+    sessionStorage.setItem('id-blog-'+ id,   dem++);
     sessionStorage.setItem('id-blog', id);
     sessionStorage.setItem('rank-post', ranker);
     updaterank(id, iduser);
+  
     setTimeout(() => {
       window.location.href = "blog_detail.html";
     }, 300);
@@ -61,6 +62,9 @@ var url_usercomment = 'http://localhost:8000/comment';
 var url_userrank = 'http://localhost:8000/updaterank';
 fetchText();
 async function fetchText() {
+
+  console.log("dem blog");
+  console.log(dem);
   document.getElementById("comment-input").value = '';
     let response = await fetch(url_blog + '/' + idblog);
     let response2 = await fetch(url_userlove);
@@ -197,6 +201,22 @@ async function fetchText() {
         })
     }
 }
+async function checkId(){
+  if(name){
+    let getlistUserlove = await fetch('http://localhost:8000/userlove');
+    if(datarank.status === 200){
+      let apiuserlove = await getlistUserlove.json();
+      var userlove = apiuserlove.filter(function(user) {
+        return user.id_user == iduserlike && user.id_blog == idblog;
+      });
+      console.log("userlove");
+      console.log(userlove);
+    }
+    
+  }else{
+    console.log("exit");
+  }
+}
 
 function cliclike(idblog, iduser){
   var idusers = sessionStorage.getItem('id-user');
@@ -210,7 +230,7 @@ function cliclike(idblog, iduser){
     }
     if(localStorage.clickcount == 1) {
       if((idusers == iduser)){
-        document.getElementById('hearthihi').style.color = 'red';
+        // document.getElementById('hearthihi').style.color = 'red';
         var datas = {
           "id_user": iduser,
           "id_blog": idblog,
@@ -233,6 +253,8 @@ function cliclike(idblog, iduser){
         })
           .then(data => {
             location.reload();
+            checkId();
+            // var idusers = sessionStorage.getItem('id-user');
             // console.log(data);
             //   document.getElementById('checkid').value = data.id;
           })
@@ -243,8 +265,6 @@ function cliclike(idblog, iduser){
     }
     if(localStorage.clickcount % 2 == 0) {
       document.getElementById('hearthihi').style.color = 'black';
-    }else{
-      document.getElementById('hearthihi').style.color = 'red';
     }
   }
  
@@ -330,7 +350,7 @@ async function getLayoutHomePage(response, response2,  userranker, idusersave){
             </div>
             <div class="info__text">
               <h5>${response.user}</h5>
-              <p class="realtime">4 giờ trước</p>
+              <p class="realtime">${response.reg_date}</p>
             </div>
             <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
               rank:<span>${rankbyblog.name}</span>
@@ -382,7 +402,7 @@ async function getLayoutHomePage(response, response2,  userranker, idusersave){
             </div>
             <div class="info__text">
               <h5>${response.user}</h5>
-              <p class="realtimebl">4 giờ trước</p>
+              <p class="realtimebl">${response.reg_date}</p>
             </div>
             <div style="position: relative; top: -6px; left: 5px; font-size: 10px; cursor: pointer;">
               rank:<span>${rankbyblog.name}</span>

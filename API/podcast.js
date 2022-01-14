@@ -2,7 +2,16 @@ function start() {
     getApi(url_podcast,renderLayoutPodCast);
   }
   start();
-  
+ function getApi(url,callback) {
+    fetch(url)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(callback)
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+  }
 //Get POdcast in home page
 
 function renderLayoutPodCast(responses){
